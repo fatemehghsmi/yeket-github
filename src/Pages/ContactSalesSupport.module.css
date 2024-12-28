@@ -1,0 +1,53 @@
+.container {
+  background-color: #f2e8cf;
+  padding: 20px;
+  margin: 40px auto;
+  max-width: 800px;
+  border-radius: 10px;
+  font-family: sans-serif;
+  color: #386641;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #6a994e;
+  margin-bottom: 20px;
+}
+
+.phone {
+  font-size: 1.5rem;
+  color: #f0b653;
+  font-weight: bold;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .phone {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+    margin: 15px auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .phone {
+    font-size: 1.2rem;
+  }
+}

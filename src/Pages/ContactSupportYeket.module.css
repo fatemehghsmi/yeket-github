@@ -1,0 +1,119 @@
+.supportContainer {
+  background-color: #f2e8cf;
+  color: #6a994e;
+  padding: 20px;
+  margin: 40px auto; /* فاصله از هدر و فوتر */
+  max-width: 1200px;
+  font-family: sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #386641;
+  margin-bottom: 20px;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #a7c957;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.textarea {
+  height: 150px;
+}
+
+.submitButton {
+  background-color: #6a994e;
+  color: #f2e8cf;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #386641;
+}
+
+.successMessage {
+  margin-top: 20px;
+  color: #386641;
+  font-size: 1.2rem;
+}
+
+.phone {
+  color: #f0b653;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  /* برای تبلت */
+  .aboutContainer,
+  .contactContainer,
+  .reportContainer,
+  .supportContainer {
+    padding: 10px 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .textarea {
+    height: 120px;
+  }
+
+  .input,
+  .textarea {
+    font-size: 0.9rem;
+  }
+
+  .submitButton {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* برای موبایل */
+  .aboutContainer,
+  .contactContainer,
+  .reportContainer,
+  .supportContainer {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .textarea {
+    height: 100px;
+  }
+
+  .input,
+  .textarea {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .submitButton {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+  }
+
+  .phone {
+    font-size: 0.9rem;
+  }
+}

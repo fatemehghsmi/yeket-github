@@ -1,0 +1,102 @@
+/* کانتینر اصلی کامنت‌ها */
+.commentsContainer {
+  display: flex; /* نمایش دو ستون کنار هم */
+  direction: rtl; /* تنظیم جهت راست‌چین */
+  margin-top: 20px;
+  padding: 0; /* حذف فاصله داخلی */
+  background-color: transparent; /* پس‌زمینه کلی حذف شود */
+  border-radius: 10px;
+  justify-content: center; /* مرکز کردن ستون‌ها */
+  gap: 10px; /* فاصله بین ستون‌ها */
+  flex-wrap: wrap; /* برای دستگاه‌های کوچک ستون‌ها را زیر هم ببرد */
+}
+
+/* ستون کامنت‌های مثبت */
+.positiveColumn {
+  flex: 0 0 35%; /* عرض هر ستون 35% از کل کانتینر */
+  max-width: 35%; /* حداکثر عرض ستون */
+  padding: 10px;
+  background-color: transparent; /* حذف پس‌زمینه ستون */
+  border-right: 1px solid #ddd; /* خط جداکننده بین ستون‌ها */
+  display: flex;
+  flex-direction: column; /* چینش عمودی */
+  gap: 15px; /* فاصله بین کامنت‌ها */
+}
+
+/* ستون کامنت‌های منفی */
+.negativeColumn {
+  flex: 0 0 35%; /* عرض هر ستون 35% از کل کانتینر */
+  max-width: 35%; /* حداکثر عرض ستون */
+  padding: 10px;
+  background-color: transparent; /* حذف پس‌زمینه ستون */
+  display: flex;
+  flex-direction: column; /* چینش عمودی */
+  gap: 15px; /* فاصله بین کامنت‌ها */
+}
+
+/* استایل هر کامنت */
+.comment {
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: right; /* راست‌چین کردن متن */
+  background-color: white; /* پس‌زمینه کامنت سفید */
+  border: 1px solid transparent; /* کادر پیش‌فرض */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* سایه جذاب */
+  flex: 1; /* ارتفاع برابر برای تمام کامنت‌ها */
+  display: flex;
+  flex-direction: column; /* چینش متن و عناصر داخل کامنت */
+  justify-content: space-between; /* متن و فضای داخل کامنت */
+}
+
+/* کامنت‌های مثبت */
+.positiveComment {
+  border-color: #4caf50; /* سبز برای کادر کامنت مثبت */
+}
+
+/* کامنت‌های منفی */
+.negativeComment {
+  border-color: #ff9800; /* نارنجی برای کادر کامنت منفی */
+}
+
+/* استایل نام نویسنده */
+.commentAuthor {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* استایل متن کامنت */
+.commentText {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: auto; /* فاصله بین متن و ادامه */
+}
+
+/* استایل لینک ادامه */
+.readMore {
+  color: #ff9800;
+  cursor: pointer;
+  font-weight: bold;
+  align-self: flex-start; /* چسباندن لینک ادامه به سمت راست */
+}
+
+.readMore:hover {
+  text-decoration: underline;
+}
+
+/* ریسپانسیو برای نمایش ستون‌ها در دستگاه‌های کوچک */
+@media (max-width: 768px) {
+  .commentsContainer {
+    flex-direction: column; /* ستون‌ها زیر هم قرار بگیرند */
+    gap: 20px; /* فاصله بیشتر بین ستون‌ها */
+  }
+
+  .positiveColumn,
+  .negativeColumn {
+    flex: 0 0 100%; /* هر ستون تمام عرض را بگیرد */
+    max-width: 100%; /* تنظیم عرض به 100% */
+    border-right: none; /* خط جداکننده را حذف کن */
+  }
+}

@@ -1,0 +1,455 @@
+.mother {
+  height: fit-content;
+  margin-bottom: 40vh;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 13vh;
+}
+.images {
+  width: 55%;
+  height: fit-content;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  margin-top: 0%;
+}
+.details {
+  width: 40%;
+  height: fit-content;
+}
+.details p {
+  font-size: 1rem;
+  color: #595757;
+  text-align: right;
+  direction: rtl;
+}
+.details p span {
+  font-size: 1.2rem;
+  color: #386641;
+}
+.actions {
+  width: 45%;
+  height: fit-content;
+  float: right;
+  justify-content: center;
+  display: inline-grid;
+}
+.smallimg {
+  width: 100px;
+  height: 100px;
+}
+/* .customIndicator ul {
+  justify-content: space-between;
+} */
+.customIndicator li {
+  width: 100px;
+  height: 100px;
+  margin: 20px 10px;
+  top: 100px;
+  border-radius: 10px;
+}
+.image {
+  width: 55%;
+  height: 330px;
+  justify-self: center;
+  border-radius: 10px;
+  box-shadow: 0px 3px 6px #747474;
+}
+.pricebtn {
+  background-color: #f0b653;
+  color: #363636;
+  font-size: 1rem;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 20px;
+  justify-self: center;
+  margin-bottom: 1vh;
+  cursor: pointer;
+}
+.buybtn {
+  background-color: #a7c957;
+  color: #272727;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 50px;
+  cursor: pointer;
+}
+.icon {
+  color: #f0b653;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.similarproducts{
+  width: 100%;
+}
+.product {
+  padding: 0 50px;
+}
+.slick-prev{
+  color: #386641;
+}
+.title{
+  display: block;
+  margin-top: 160px;
+  text-align: right;
+  color: #386641;
+}
+/* باکس توضیحات */
+.descriptionBox {
+  margin-top: 20px; /* فاصله از بخش بالایی */
+  padding: 15px; /* فاصله داخلی */
+  background-color: #f9f9f9; /* رنگ پس‌زمینه */
+  border-radius: 10px; /* گوشه‌های گرد */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* سایه */
+  text-align: left; /* چپ‌چین کردن متن */
+  max-width: 800px; /* حداکثر عرض */
+  margin-left: 20px; /* مرکز کردن باکس */
+  margin-right: auto; /* مرکز کردن باکس */
+  margin-bottom: 20px;
+}
+
+/* عنوان بخش توضیحات */
+.descriptionTitle {
+  font-size: 18px; /* اندازه عنوان */
+  font-weight: bold; /* ضخامت عنوان */
+  margin-bottom: 10px; /* فاصله از متن */
+  color: #595757;
+  text-align: right;
+}
+
+/* متن توضیحات */
+.descriptionText {
+  font-size: 16px; /* اندازه متن */
+  line-height: 1.6; /* فاصله خطوط */
+  color: #555; /* رنگ متن */
+}
+
+
+/* Media Queries برای دستگاه‌های کوچک‌تر */
+@media (max-width: 1024px) {
+  .descriptionBox {
+    max-width: 90%; /* کاهش عرض در تبلت‌ها */
+    padding: 12px; /* کاهش فاصله داخلی */
+  }
+
+  .descriptionTitle {
+    font-size: 16px; /* اندازه عنوان کاهش یابد */
+  }
+
+  .descriptionText {
+    font-size: 14px; /* اندازه متن کاهش یابد */
+  }
+}
+
+@media (max-width: 768px) {
+  .descriptionBox {
+    max-width: 95%; /* عرض کامل در موبایل */
+    padding: 10px; /* کاهش بیشتر فاصله داخلی */
+  }
+
+  .descriptionTitle {
+    font-size: 10px; /* کوچک‌تر کردن عنوان */
+  }
+
+  .descriptionText {
+    font-size: 13px; /* کوچک‌تر کردن متن */
+    line-height: 1.4; /* کاهش فاصله خطوط */
+  }
+}
+
+@media (max-width: 480px) {
+  .descriptionBox {
+    max-width: 100%; /* عرض کامل در موبایل‌های کوچک */
+    padding: 8px; /* کاهش بیشتر فاصله داخلی */
+  }
+
+  .descriptionTitle {
+    font-size: 14px; /* کوچک‌تر کردن عنوان */
+  }
+
+  .descriptionText {
+    font-size: 12px; /* کوچک‌تر کردن متن */
+    line-height: 1.3; /* کاهش فاصله خطوط */
+  }
+}
+
+
+
+
+/* Responsive */
+@media (max-width: 1300px) {
+  .container {
+    margin-top: 3vh;
+  }
+  .image {
+    width: 60%;
+    height: 280px;
+  }
+  .smallimg {
+    width: 60px;
+    height: 60px;
+  }
+  /* .customIndicator ul {
+    justify-content: space-between;
+  } */
+  .customIndicator li {
+    width: 60px;
+    height: 60px;
+    /* margin: 10px 30px; */
+    top: 100px;
+  }
+  .buybtn {
+    font-size: 1rem;
+    padding: 5px 40px;
+  }
+  .pricebtn {
+    font-size: 0.9rem;
+    padding: 5px 15px;
+  }
+  .details p {
+    font-size: 0.8rem;
+  }
+  .details p span {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 830px) {
+  .mother {
+    margin-bottom: 30vh;
+  }
+  .container {
+    display: flex;
+  }
+  /* .images {
+    display: inline-block;
+    justify-self: center;
+  } */
+  .details {
+    display: inline-block;
+  }
+  .image {
+    width: 60%;
+    height: 220px;
+    /* margin-left: 50px; */
+    vertical-align: middle;
+  }
+  .smallimg {
+    width: 50px;
+    height: 50px;
+    margin: 0 5px;
+  }
+  .customIndicator li {
+    width: 50px;
+    height: 50px;
+    margin: 0 5px;
+    top: 50px;
+    left: 0;
+    /* display: flex;
+    flex-direction: column; */
+  }
+
+  .buybtn {
+    font-size: 0.9rem;
+    padding: 5px 25px;
+  }
+  .icon {
+    size: 20;
+  }
+  .pricebtn {
+    font-size: 0.8rem;
+    padding: 5px 15px;
+  }
+  .details p {
+    font-size: 0.7rem;
+  }
+  .details p span {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 640px) {
+  .mother {
+    margin-bottom: 30vh;
+  }
+  .container {
+    display: flex;
+  }
+  /* .images {
+    display: inline-block;
+    justify-self: center;
+  } */
+  .details {
+    display: inline-block;
+  }
+  .image {
+    width: 70%;
+    height: 200px;
+    /* margin-left: 50px; */
+    vertical-align: middle;
+  }
+  .smallimg {
+    width: 43px;
+    height: 43px;
+    margin: 0 2px;
+  }
+  .customIndicator li {
+    width: 43px;
+    height: 43px;
+    margin: 0 5px;
+    top: 50px;
+    left: 0;
+    /* display: flex;
+    flex-direction: column; */
+  }
+  .icon {
+    display: block;
+    justify-self: center;
+  }
+  .buybtn {
+    font-size: 0.8rem;
+    padding: 5px 20px;
+  }
+  .pricebtn {
+    font-size: 0.8rem;
+    padding: 5px 15px;
+  }
+  .details p {
+    font-size: 0.7rem;
+  }
+  .details p span {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 555px) {
+  .mother {
+    margin-bottom: 30vh;
+  }
+  .container {
+    display: flex;
+  }
+  /* .images {
+    display: inline-block;
+    justify-self: center;
+  } */
+  .details {
+    display: inline-block;
+  }
+  .image {
+    width: 60%;
+    height: 160px;
+    /* margin-left: 50px; */
+    vertical-align: middle;
+    overflow: hidden;
+    mask-repeat: no-repeat;
+  }
+  .smallimg {
+    width: 38px;
+    height: 38px;
+    margin: 0px 2px;
+  }
+  .customIndicator li {
+    width: 38px;
+    height: 38px;
+    margin: 0px 2px;
+    top: 50px;
+    left: 0;
+    /* display: flex;
+    flex-direction: column; */
+  }
+  .icon {
+    display: block;
+    justify-self: center;
+  }
+  .buybtn {
+    font-size: 0.8rem;
+    padding: 5px 20px;
+  }
+  .pricebtn {
+    font-size: 0.7rem;
+    padding: 5px 15px;
+  }
+  .details p {
+    font-size: 0.6rem;
+  }
+  .details p span {
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 444px) {
+  .mother {
+    margin-bottom: 30vh;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .images {
+    width: 100%;
+    display: inline-block;
+    justify-self: center;
+    margin-bottom: 70px;
+  }
+  .details {
+    width: 100%;
+    display: inline-block;
+    justify-self: center;
+  }
+  .image {
+    width: 50%;
+    height: 160px;
+    /* margin-left: 50px; */
+    vertical-align: middle;
+    overflow: hidden;
+    mask-repeat: no-repeat;
+    margin-bottom: 0;
+  }
+  .smallimg {
+    width: 38px;
+    height: 38px;
+    margin: 0px 2px;
+  }
+  .customIndicator li {
+    width: 38px;
+    height: 38px;
+    margin: 0px 2px;
+    top: 50px;
+    left: 0;
+    /* display: flex;
+    flex-direction: column; */
+  }
+  .actions {
+    width: 100%;
+    display: inline;
+  }
+  .pricebtn {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+    float: left;
+    width: 40%;
+  }
+  .buy {
+    width: 50%;
+    float: right;
+  }
+  .buybtn {
+    font-size: 0.7rem;
+    padding: 5px 8px;
+    float: inline-start;
+    vertical-align: middle;
+  }
+
+  .icon {
+    display: inline;
+    justify-self: center;
+    float: inline-start;
+  }
+  .details p {
+    font-size: 0.6rem;
+  }
+  .details p span {
+    font-size: 0.7rem;
+  }
+}

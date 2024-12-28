@@ -1,0 +1,247 @@
+/* فونت‌ها */
+@font-face {
+  font-family: "DimaSogand";
+  src: local("DimaSogand"), url(../../Fonts/DimaSogand.ttf) format("truetype");
+}
+
+.headerContainer {
+  direction: rtl; /* تنظیم متن‌ها و ترتیب به راست‌چین */
+}
+
+/* تنظیم کانتینر اصلی */
+.container {
+  display: table;
+  width: 100%;
+  height: fit-content;
+  border-bottom: solid 2px #f2f2f2;
+}
+
+.btn {
+  background-color: #386641;
+  color: #f2e8cf;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  font-family: "Vazir";
+  float: left;
+  padding: 0% 2%;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.logo {
+  width: 45px;
+  height: 45px;
+  padding-left: 0;
+  float: right;
+}
+
+.logoLink {
+  text-align: right; /* راست‌چین کردن لوگو */
+}
+
+.header {
+  font-size: 2rem;
+  font-family: "DimaSogand";
+  color: #386641;
+  float: right;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+
+/* کانتینر دوم */
+.container2 {
+  display: flex;
+  justify-content: space-between; /* تقسیم‌بندی بخش‌ها */
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  padding-top: 1%;
+  flex-wrap: nowrap; /* جلوگیری از انتقال عناصر به خط بعدی */
+}
+
+/* بخش راست (دسته‌بندی و جستجو) */
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* فاصله بین دسته‌بندی و جستجو */
+  flex-wrap: wrap; /* انتقال عناصر به خط بعدی فقط در صورت نیاز */
+}
+
+/* دکمه دسته‌بندی */
+.categoryButton {
+  background: none;
+  color: #386641;
+  font-family: "Vazir";
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+}
+
+/* آیکن‌ها */
+.iconsWrapper {
+  display: flex;
+  gap: 20px; /* فاصله بین آیکن‌ها */
+  font-size: 20px; /* اندازه بزرگ‌تر برای آیکن‌ها */
+  margin-left: 40px;
+  justify-content: flex-start; /* آیکن‌ها در سمت چپ بمانند */
+}
+
+/* جلوگیری از جابه‌جایی آیکن‌ها در حالت ریسپانسیو */
+.iconsWrapper {
+  flex-shrink: 0;
+}
+
+/* آیکن‌ها */
+.icon {
+  width: 28px; /* عرض بزرگ‌تر */
+  height: 28px; /* ارتفاع بزرگ‌تر */
+  color: #f0b653;
+  cursor: pointer;
+}
+
+/* تنظیم ورودی جستجو */
+.searchWrapper {
+  position: relative;
+  display: inline-block;
+  width: 300px; /* عرض مشخص برای input و نتایج */
+  text-align: right; /* راست‌چین کردن متن */
+}
+
+.input {
+  width: 86%;
+  padding: 10px 35px 10px 10px; /* فضای کافی برای آیکن سمت چپ */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: 0px 3px 6px #747474;
+  transition: all 0.3s ease;
+  font-family: "Vazir", sans-serif;
+  text-align: right; /* متن داخل ورودی راست‌چین شود */
+}
+
+/* آیکن جستجو */
+.searchIcon {
+  position: absolute;
+  left: 0; /* کاملاً به لبه چپ بچسبد */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #f0b653; /* رنگ نارنجی مورد نظر */
+  font-size: 24px;
+  pointer-events: none; /* جلوگیری از کلیک روی آیکن */
+  margin: 0; /* حذف هرگونه فاصله */
+  padding: 0; /* حذف هرگونه فاصله داخلی */
+}
+
+/* نتایج جستجو */
+.searchResults {
+  position: absolute;
+  top: 100%;
+  right: 0; /* چسباندن به لبه راست */
+  width: 100%; /* عرض برابر با input */
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  z-index: 1000;
+  text-align: right; /* راست‌چین کردن متن داخل نتایج */
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* سایه برای جذابیت */
+}
+
+/* باکس اسکرول‌دار */
+.scrollable {
+  max-height: 200px; /* حداکثر ارتفاع */
+  overflow-y: auto; /* اسکرول عمودی برای محتوای بلند */
+}
+
+/* آیتم‌های نتیجه */
+.resultItem {
+  padding: 10px;
+  color: #333;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.resultItem p {
+  margin-right: 20px; /* فاصله اضافی برای متن داخل نتیجه */
+  margin-bottom: 0;
+}
+
+.resultItem:hover {
+  color: #386641;
+}
+
+/* پیام "نتیجه‌ای یافت نشد" */
+.noResults {
+  padding: 10px;
+  color: #888;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+/* لودر جستجو */
+.loadingSearch {
+  display: flex;
+  justify-content: center; /* مرکز کردن افقی */
+  align-items: center; /* مرکز کردن عمودی */
+  height: 100%; /* ارتفاع برابر با والد */
+  color: #386641; /* رنگ سبز */
+  text-align: center;
+}
+
+/* تنظیمات لودر */
+.loadingSearch > div {
+  margin: 0 auto; /* مرکز کردن */
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .searchWrapper {
+    width: 60%; /* عرض کمتر */
+    margin-bottom: 10px;
+  }
+
+  .iconsWrapper {
+    font-size: 18px; /* آیکن‌ها کوچک‌تر */
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .searchWrapper {
+    width: 70%;
+  }
+
+  .btn {
+    font-size: 1rem; /* متن کوچک‌تر */
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .header {
+    font-size: 1.5rem; /* متن کوچک‌تر */
+  }
+}
+
+@media (max-width: 400px) {
+  .searchWrapper {
+    width: 100%;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .btn {
+    font-size: 0.9rem; /* متن کوچک‌تر */
+  }
+
+  .header {
+    font-size: 1.3rem;
+  }
+}

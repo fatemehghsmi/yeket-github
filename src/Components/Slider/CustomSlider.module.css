@@ -1,0 +1,165 @@
+/* کانتینر اصلی اسلایدر */
+.sliderContainer {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* عرض حداکثر اسلایدر (حالت اصلی) */
+  margin: auto;
+  overflow: hidden; /* فقط تصاویر داخل محدوده کانتینر نمایش داده شوند */
+  border-radius: 10px; /* گرد کردن گوشه‌ها */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* سایه جذاب */
+  background: #f5f5f5; /* پس‌زمینه اسلایدر */
+}
+
+/* نوار اسلایدر (حاوی تصاویر) */
+.sliderTrack {
+  display: flex; /* تصاویر به صورت افقی */
+  transition: transform 0.5s ease-in-out; /* انیمیشن جابه‌جایی بین تصاویر */
+}
+
+/* هر اسلاید */
+.slide {
+  flex: 0 0 100%; /* عرض هر اسلاید برابر با عرض کانتینر */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center; /* مرکز کردن تصویر در اسلاید */
+  align-items: center; /* مرکز کردن عمودی */
+}
+
+/* تصاویر اصلی */
+.image {
+  max-width: 100%; /* تصویر در عرض کانتینر جا شود */
+  max-height: 400px; /* حداکثر ارتفاع برای تصاویر */
+  display: block; /* نمایش تصویر به صورت بلاک */
+  border-radius: 10px; /* گرد کردن گوشه‌ها */
+  object-fit: contain; /* تصویر به تناسب داخل کانتینر جا شود */
+}
+
+/* دکمه‌های ناوبری */
+.navButton {
+  position: absolute; /* شناور کردن دکمه‌ها */
+  top: 50%; /* وسط‌چین عمودی */
+  transform: translateY(-50%); /* تنظیم دقیق در وسط */
+  background: rgba(0, 0, 0, 0.7); /* پس‌زمینه تیره شفاف */
+  border: none; /* حذف حاشیه */
+  cursor: pointer; /* نشانگر دست */
+  z-index: 10; /* نمایش روی همه عناصر */
+  width: 40px; /* عرض دکمه */
+  height: 40px; /* ارتفاع دکمه */
+  border-radius: 50%; /* گرد کردن دکمه */
+  display: flex;
+  align-items: center; /* مرکز کردن آیکن */
+  justify-content: center; /* مرکز کردن آیکن */
+  color: white; /* رنگ آیکن */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* سایه دکمه */
+}
+
+/* دکمه سمت چپ */
+.prevButton {
+  left: 10px; /* فاصله از لبه چپ */
+}
+
+/* دکمه سمت راست */
+.nextButton {
+  right: 10px; /* فاصله از لبه راست */
+}
+
+/* هاور دکمه‌ها */
+.navButton:hover {
+  background: rgba(0, 0, 0, 1); /* تیره‌تر شدن پس‌زمینه در هاور */
+  transform: translateY(-50%) scale(1.1); /* بزرگ‌تر شدن هنگام هاور */
+}
+
+/* حالت غیرفعال */
+.navButton:disabled {
+  opacity: 0.5; /* کاهش شفافیت برای دکمه غیرفعال */
+  cursor: not-allowed; /* تغییر نشانگر */
+}
+
+/* تصاویر کوچک (Thumbnails) */
+.thumbnails {
+  display: flex;
+  justify-content: center; /* مرکز کردن تصاویر کوچک */
+  flex-wrap: wrap; /* تصاویر کوچک در دستگاه‌های کوچک به خطوط بعدی منتقل شوند */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  gap: 10px; /* فاصله بین تصاویر کوچک */
+}
+
+.thumbnail {
+  width: 50px; /* عرض تصویر کوچک */
+  height: 50px; /* ارتفاع تصویر کوچک */
+  border: 2px solid transparent;
+  border-radius: 5px; /* گوشه‌های گرد */
+  cursor: pointer;
+  transition: border 0.3s, transform 0.3s; /* انیمیشن تغییرات */
+}
+
+.thumbnail:hover {
+  border-color: gray; /* تغییر رنگ حاشیه در هاور */
+  transform: scale(1.1); /* بزرگنمایی هنگام هاور */
+}
+
+.activeThumbnail {
+  border-color: black; /* حاشیه برای تصویر فعال */
+  transform: scale(1.1); /* بزرگنمایی برای تصویر فعال */
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* تصویر داخل کادر تنظیم شود */
+  border-radius: 5px;
+}
+
+/* انیمیشن بارگذاری */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* ارتفاع محدوده بارگذاری */
+}
+
+/* ریسپانسیو برای تبلت و موبایل */
+@media (max-width: 768px) {
+  .sliderContainer {
+    max-width: 100%; /* عرض کامل برای موبایل */
+  }
+
+  .image {
+    max-height: 300px; /* کاهش ارتفاع تصاویر */
+  }
+
+  .navButton {
+    width: 30px; /* کوچک‌تر شدن دکمه‌ها */
+    height: 30px;
+  }
+
+  .thumbnail {
+    width: 40px; /* کوچک‌تر شدن تصاویر کوچک */
+    height: 40px;
+  }
+
+  .thumbnails {
+    gap: 5px; /* کاهش فاصله بین تصاویر کوچک */
+  }
+}
+
+@media (max-width: 480px) {
+  .sliderContainer {
+    max-width: 100%; /* عرض کامل برای موبایل‌های کوچک */
+  }
+
+  .image {
+    max-height: 200px; /* کاهش بیشتر ارتفاع تصاویر */
+  }
+
+  .thumbnail {
+    width: 35px; /* کوچک‌تر شدن تصاویر کوچک */
+    height: 35px;
+  }
+
+  .navButton {
+    width: 25px; /* کوچک‌تر شدن دکمه‌ها */
+    height: 25px;
+  }
+}
