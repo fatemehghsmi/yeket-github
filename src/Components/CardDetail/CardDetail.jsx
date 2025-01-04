@@ -217,7 +217,12 @@ function CardDetail() {
           </Link>
           <p>
             نظرات: <span>4 نظر مثبت </span>
-            <span style={{ color: "blue" }}>4 نظر منفی</span>
+
+            
+          
+
+            <span style={{color:"red"}}>4 نظر منفی</span>
+
           </p>
           {/* <p>
             وضعیت: <span>{product.stock > 0 ? "موجود" : "ناموجود"} </span>

@@ -103,6 +103,9 @@
   text-align: center;
   color: #386641;
 }
+.negetivcmd{
+  color: red;
+}
 /* باکس توضیحات */
 
 .descriptionBox {
