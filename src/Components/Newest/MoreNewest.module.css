@@ -40,6 +40,8 @@
     height: fit-content;
     display: flex;
     flex-direction: column;
+    direction: rtl;
+    text-align: right;
   }
   .sidebar h4 {
     text-align: right;
@@ -47,10 +49,10 @@
     background-color: #f2e8cf;
     width: max-content;
     font-size: 1.5rem;
-    left: 80%;
+    /* left: 80%; */
     position: relative;
     padding: 0% 2%;
-    margin: 0%;
+    margin: 5px 0;
     border-radius: 10px;
     /* font-family: "B-NAZANIN"; */
   }
@@ -59,18 +61,37 @@
     color: #6a994e;
     font-size: 1.2rem;
   }
-  .sidebar p:hover{
-    color: #f0b653;
+  .categoryLink:hover {
+    /* color: #f0b653; */
+    /* font-size: 1.2rem; اندازه متن */
+    color: #6a994e; /* رنگ متن */
+    font-weight: bold; /* ضخیم‌تر کردن متن */
+    background-color: #f2e8cf; /* رنگ پس‌زمینه */
+    padding: 0px 2px; /* فاصله داخلی بالا، پایین و کناره‌ها */
+    border-radius: 10px; /* گرد کردن گوشه‌ها */
+    text-align: center; /* متن در وسط */
+    display: inline-block; /* متن به اندازه محتوا باشد */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: right;
+    direction: rtl;
   }
   .sortcontainer {
     width: 100%;
-    height: max-content;
-    background-color: #f2e8cf;
-    margin: 20px 20%;
+  height: max-content;
+  background-color: #f2e8cf;
+  margin: 20px 0%;
+  direction: rtl;
+  text-align: right;
+
   }
   .sortcontainer p {
     margin: 20%;
-    cursor: pointer;
+  cursor: pointer;
+  direction: rtl;
+  text-align: right;
+  }
+  .sortcontainer p:hover{
+    color: #f0b653;
   }
   .sidebar p {
     color: #6a994e;
@@ -83,71 +104,73 @@
   }
   
   /* Responsive */
-  @media (max-width: 900px) {
-    .product {
-      width: 45%;
-    }
-    .title {
-      font-size: 1rem;
-    }
-    .sidebar p {
-      font-size: 0.8rem;
-    }
-    .sidebar h4 {
-      font-size: 1.2rem;
-    }
-    .sidebar h3{
-      font-size: 1rem;
-    }
+@media (max-width: 900px) {
+  .product {
+    width: 45%;
   }
-  @media (max-width: 650px) {
-    .title {
-      font-size: 1.2rem;
-    }
-    .morecontainer {
-      width: 75%;
-    }
-    .sidebar {
-      width: 25%;
-    }
-  
-    .sidebar p {
-      font-size: 0.6rem;
-    }
-    .product {
-      width: 45%;
-    }
-    .sidebar h4 {
-      font-size: 1rem;
-    }
-    .sidebar h3{
-      font-size: 0.8rem;
-    }
+  .title {
+    font-size: 1rem;
   }
-  @media (max-width: 400px) {
-    .title {
-      font-size: 1rem;
-    }
-    .morecontainer {
-      width: 80%;
-    }
-    .sidebar {
-      width: 25%;
-    }
-  .sortcontainer p{
-   margin: 10px;
+  .sidebar{
+    width: 30%;
+  }
+  .sidebar p {
+    font-size: 0.8rem;
+  }
+  .sidebar h4 {
+    font-size: 1.2rem;
   }
   .sidebar h3{
+    font-size: 1rem;
+  }
+}
+@media (max-width: 650px) {
+  .title {
+    font-size: 1.2rem;
+  }
+  .morecontainer {
+    width: 75%;
+  }
+  .sidebar {
+    width: 30%;
+  }
+
+  .sidebar p {
     font-size: 0.6rem;
   }
-    .sidebar p {
-      font-size: 0.5rem;
-    }
-    .product {
-      width: 46%;
-    }
-    .sidebar h4 {
-      font-size: 0.8rem;
-    }
+  .product {
+    width: 45%;
   }
-  
+  .sidebar h4 {
+    font-size: 1rem;
+  }
+  .sidebar h3{
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 400px) {
+  .title {
+    font-size: 1rem;
+  }
+  .morecontainer {
+    width: 80%;
+  }
+  .sidebar {
+    width: 30%;
+  }
+.sortcontainer p{
+ margin: 10px;
+}
+.sidebar h3{
+  font-size: 0.6rem;
+}
+  .sidebar p {
+    font-size: 0.5rem;
+  }
+  .product {
+    width: 46%;
+  }
+  .sidebar h4 {
+    font-size: 0.8rem;
+  }
+}

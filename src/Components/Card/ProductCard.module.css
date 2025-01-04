@@ -1,53 +1,68 @@
 .card {
   width: 70%;
   height: 260px;
+  display: flex;
+  flex-direction: column; /* چیدمان عمودی برای بخش‌های کارت */
   align-items: center;
-  justify-content: center;
-  justify-self: center;
+  justify-content: space-between; /* فاصله مناسب بین اجزای کارت */
   box-shadow: 0px 3px 6px #747474;
   border-radius: 13px;
   cursor: pointer;
-  place-items: center;
   margin: 15px 0;
   padding: 0;
+  background-color: white;
+  overflow: hidden; /* جلوگیری از خروج اجزا */
 }
 
 .img {
   width: 100%;
   height: 70%;
   border-radius: 13px 13px 0 0;
+  object-fit: cover; /* برش تصاویر برای تطابق */
 }
+
 .title {
   text-align: center;
   color: #386641;
   margin: 5px;
+  font-size: 1rem;
+  padding: 0 5px;
+  white-space: nowrap; /* جلوگیری از شکستن متن */
+  overflow: hidden; /* حذف متن اضافی */
+  text-overflow: ellipsis; /* نمایش ... برای متن طولانی */
+  max-width: 90%; /* محدود کردن عرض متن */
 }
 
 .price {
-  width: 100%;
+  width: 90%; /* عرض دکمه قیمت کمتر از کارت */
   background-color: #386641;
   color: #f2e8cf;
   border: none;
-  padding: 3px 20px;
+  padding: 3px 10px;
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
+  text-align: center;
+  margin-bottom: 10px;
 }
+
 .card:hover .price {
   color: #363636;
   background-color: #f0b653;
 }
+
 a {
   text-decoration: none;
   margin: 0;
   padding: 0;
+  display: block; /* کارت کامل کلیک‌شدنی باشد */
 }
 
 /* Responsive */
 
 @media (max-width: 1070px) {
   .price {
-    padding: 1px 15px;
+    padding: 5px 8px;
     font-size: 0.8rem;
   }
   .card {
@@ -60,16 +75,17 @@ a {
     font-size: 0.9rem;
   }
 }
+
 @media (max-width: 850px) {
   .price {
-    padding: 1px 10px;
+    padding: 4px 6px;
     font-size: 0.8rem;
   }
   .card {
-    height: 180px;
+    height: 200px;
   }
   .img {
-    height: 58%;
+    height: 60%;
   }
   .title {
     font-size: 0.8rem;
@@ -78,7 +94,7 @@ a {
 
 @media (max-width: 600px) {
   .price {
-    padding: 1px 5px;
+    padding: 3px 5px;
     font-size: 0.7rem;
   }
   .title {
@@ -89,18 +105,19 @@ a {
     margin: 10px 0;
   }
   .img {
-    height: 65%;
+    height: 60%;
   }
 }
+
 @media (max-width: 400px) {
   .img {
-    height: 60%;
+    height: 55%;
     width: 100%;
   }
   .price {
-    padding: 1px 8px;
+    padding: 1px 2px;
     font-size: 0.7rem;
-    margin: 0%;
+    margin-bottom: 10px;
   }
   .title {
     font-size: 0.7rem;

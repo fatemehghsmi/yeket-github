@@ -3,12 +3,14 @@ import ProductCard from "../Card/ProductCard";
 import styles from "./MoreBestSeller.module.css";
 import { GrFormNext } from "react-icons/gr";
 import axios from "axios";
-import "../../Fonts/B-NAZANIN.ttf"
+import "../../Fonts/B-NAZANIN.ttf";
 import { FaSortAmountDown } from "react-icons/fa";
+import { Link } from "react-router-dom"; // اضافه کردن Link
 
 function MoreBestSeller() {
   const [products, setProducts] = useState([]);
   const [categorys, setCategorys] = useState([]);
+
   useEffect(() => {
     getData();
   }, []);
@@ -23,6 +25,7 @@ function MoreBestSeller() {
     );
     setProducts(response.data);
   };
+
   return (
     <div>
       <h2 className={styles.title}>پرفروش ترین ها</h2>
@@ -31,22 +34,35 @@ function MoreBestSeller() {
         <div className={styles.morecontainer}>
           {products.map((product) => (
             <div className={styles.product} key={product.id}>
-              <ProductCard product={product}/>
+              <ProductCard product={product} />
             </div>
           ))}
         </div>
         <div className={styles.sidebar}>
           <h4>همه</h4>
-          {categorys.map((item) => (
-            item.parent== null &&
-            <p key={item.id}>{item.title}</p>
-          ))}
+          {categorys.map(
+            (item) =>
+              item.parent === null && (
+                <Link
+                  to={item.subcollection_ids.length
+                    ? `/category/${item.id}`
+                    : `/subcategory/${item.id}`} // مسیر صفحه دسته‌بندی
+                  key={item.id}
+                  className={styles.categoryLink} // اضافه کردن کلاس برای استایل
+                >
+                  <p>{item.title}</p>
+                </Link>
+              )
+          )}
           <div className={styles.sortcontainer}>
-          <h3>مرتب کردن بر اساس&nbsp;<FaSortAmountDown /></h3>
-          <p>ارزان ترین</p>
-          <p>گران ترین</p>
-          <p>مورد علاقه ها</p>
-          <p>پیشنهاد حامی</p>
+            <h3>
+              مرتب کردن بر اساس&nbsp;
+              <FaSortAmountDown />
+            </h3>
+            <p>ارزان ترین</p>
+            <p>گران ترین</p>
+            <p>مورد علاقه ها</p>
+            <p>پیشنهاد یکت</p>
           </div>
         </div>
       </div>

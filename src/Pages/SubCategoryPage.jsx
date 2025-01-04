@@ -100,8 +100,8 @@ const SubCategoryPage = () => {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1>Products</h1>
-        {loading && <p>Loading products...</p>}
+        <h1>محصولات</h1>
+        {/* {loading && <p>Loading products...</p>} */}
         {error && <p className={styles.error}>{error}</p>}
         <div className={styles.productsGrid}>
           {products.map((product) => (
@@ -111,82 +111,86 @@ const SubCategoryPage = () => {
       </main>
       <aside className={styles.sidebar}>
         <h2>فیلترها</h2>
-        <div
-          className={`${styles.filterGroup} ${
-            filters.min_price ? styles.active : styles.inactive
-          }`}
-        >
-          <label>کمترین قیمت</label>
-          <input
-            type="number"
-            name="min_price"
-            value={filters.min_price}
-            onChange={handleFilterChange}
-          />
-        </div>
-        <div
-          className={`${styles.filterGroup} ${
-            filters.max_price ? styles.active : styles.inactive
-          }`}
-        >
-          {" "}
-          <label>بیشترین قیمت</label>
-          <input
-            type="number"
-            name="max_price"
-            value={filters.max_price}
-            onChange={handleFilterChange}
-          />
-        </div>
-        <div
-          className={`${styles.filterGroup} ${
-            filters.in_stock ? styles.active : styles.inactive
-          }`}
-        >
-          {" "}
-          <label>موجود </label>
-          <input
-            type="checkbox"
-            name="in_stock"
-            checked={filters.in_stock}
-            onChange={handleFilterChange}
-            className={styles.checkbox}
-          />
-        </div>
-        {attributes.map((attribute) => (
+        <div className={styles.filterContainer}>
           <div
             className={`${styles.filterGroup} ${
-              filters.attributes.some((attr) =>
-                attr.startsWith(attribute.title)
-              )
-                ? styles.active
-                : styles.inactive
+              filters.min_price ? styles.active : styles.inactive
             }`}
-            key={attribute.id}
+          >
+            <label>کمترین قیمت</label>
+            <input
+              type="number"
+              name="min_price"
+              value={filters.min_price}
+              onChange={handleFilterChange}
+              placeholder="کمترین قیمت مدنظر خود را وارد کنید"
+            />
+          </div>
+          <div
+            className={`${styles.filterGroup} ${
+              filters.max_price ? styles.active : styles.inactive
+            }`}
           >
             {" "}
-            <label>{attribute.title}</label>
-            <select
-              name="attributes"
-              data-title={attribute.title}
+            <label>بیشترین قیمت</label>
+            <input
+              type="number"
+              name="max_price"
+              value={filters.max_price}
               onChange={handleFilterChange}
-              className={`${styles.select} ${
+              placeholder="بیشترین قیمت مدنظر خود را وارد کنید"
+            />
+          </div>
+          <div
+            className={`${styles.filterGroup} ${
+              filters.in_stock ? styles.active : styles.inactive
+            }`}
+          >
+            {/* {" "}
+            <label>موجود </label>
+            <input
+              type="checkbox"
+              name="in_stock"
+              checked={filters.in_stock}
+              onChange={handleFilterChange}
+              className={styles.checkbox}
+            /> */}
+          </div>
+          {attributes.map((attribute) => (
+            <div
+              className={`${styles.filterGroup} ${
                 filters.attributes.some((attr) =>
                   attr.startsWith(attribute.title)
                 )
-                  ? styles.selectActive
-                  : styles.selectInactive
+                  ? styles.active
+                  : styles.inactive
               }`}
+              key={attribute.id}
             >
-              <option value="">انتخاب</option>
-              {attribute.values.map((value) => (
-                <option key={value.id} value={value.value}>
-                  {value.value}
-                </option>
-              ))}
-            </select>
-          </div>
-        ))}
+              {" "}
+              <label>{attribute.title}</label>
+              <select
+                name="attributes"
+                data-title={attribute.title}
+                onChange={handleFilterChange}
+                className={`${styles.select} ${
+                  filters.attributes.some((attr) =>
+                    attr.startsWith(attribute.title)
+                  )
+                    ? styles.selectActive
+                    : styles.selectInactive
+                }`}
+              >
+                <option value="">انتخاب</option>
+                {attribute.values.map((value) => (
+                  <option key={value.id} value={value.value}>
+                    {value.value}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ))}
+        </div>
       </aside>
     </div>
   );

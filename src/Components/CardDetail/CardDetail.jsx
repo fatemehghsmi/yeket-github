@@ -7,6 +7,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import { IoShareSocialOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 import styles from "./CardDetail.module.css";
@@ -20,6 +21,11 @@ import CommentsBox from "../CommentsBox/CommentsBox";
 import CustomSlider from "../Slider/CustomSlider";
 
 function CardDetail() {
+  function formatNumber(num) {
+    if (!num) return ""; // اگر مقدار عددی وجود ندارد
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   const [like, setLike] = useState(false);
   const { id } = useParams();
   const likeHandeler = () => {
@@ -205,13 +211,16 @@ function CardDetail() {
             ))}
           </p> */}
           <Link to={`/vendor/${product.vendor}`}>
-          <p>
-            فروشنده: <span>{product.vendor}</span>
-          </p>
+            <p>
+              فروشنده: <span>{product.vendor}</span>
+            </p>
           </Link>
-          <p>
+            <p>
+              نظرات: <span>4 نظر مثبت 4نظر منفی</span>
+            </p>
+          {/* <p>
             وضعیت: <span>{product.stock > 0 ? "موجود" : "ناموجود"} </span>
-          </p>
+          </p> */}
           {/* بخش توضیحات به عنوان باکس جدا */}
           <div className={styles.descriptionBox}>
             <h3 className={styles.descriptionTitle}>توضیحات محصول</h3>
@@ -221,14 +230,20 @@ function CardDetail() {
       </div>
       <div className={styles.actions}>
         <button className={styles.pricebtn}>
-          {product.unit_price}&nbsp; تومان{" "}
+          {formatNumber(product.unit_price)}&nbsp; تومان
         </button>
-        <div className={styles.buy}>
-          <button className={styles.buybtn}>افزودن به سبد خرید</button>
-          <span className={styles.icon} onClick={likeHandeler}>
-            {like ? <GoHeartFill size={33} /> : <GoHeart size={33} />}
-          </span>
-        </div>
+        <button className={styles.buybtn}>افزودن به سبد خرید</button>
+        <span className={styles.icon} onClick={likeHandeler}>
+          {like ? <GoHeartFill size={33} /> : <GoHeart size={33} />}
+        </span>
+          <IoShareSocialOutline className={styles.icon} size={30} />
+      </div>
+
+      <div className={styles.title}>
+        <h3>تجربه خرید مشتریان</h3>
+      </div>
+      <div>
+        <CommentsBox />
       </div>
       <div className={styles.title}>
         <h3>محصولات مشابه</h3>
@@ -239,12 +254,6 @@ function CardDetail() {
             <MiniCard product={item} key={item.id} className={styles.product} />
           ))}
         </Slider>
-      </div>
-      <div className={styles.title}>
-        <h3>نظرات مشتریان</h3>
-      </div>
-      <div>
-        <CommentsBox/>
       </div>
     </div>
   );

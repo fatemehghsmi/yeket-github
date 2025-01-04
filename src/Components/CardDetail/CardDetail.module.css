@@ -1,12 +1,12 @@
 .mother {
   height: fit-content;
-  margin-bottom: 40vh;
+  margin-bottom: 50px;
 }
 .container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 13vh;
+  margin-top: 10px;
 }
 .images {
   width: 55%;
@@ -31,11 +31,12 @@
   color: #386641;
 }
 .actions {
-  width: 45%;
-  height: fit-content;
-  float: right;
-  justify-content: center;
-  display: inline-grid;
+  display: flex; /* استفاده از Flexbox برای چیدمان خطی */
+  align-items: center; /* مرکز کردن عمودی عناصر */
+  justify-content: center; /* مرکز کردن افقی عناصر */
+  gap: 0; /* حذف فاصله بین عناصر */
+  width: 100%; /* پر کردن عرض */
+  margin-top: 20px; /* فاصله از بخش بالایی */
 }
 .smallimg {
   width: 100px;
@@ -58,47 +59,52 @@
   border-radius: 10px;
   box-shadow: 0px 3px 6px #747474;
 }
-.pricebtn {
-  background-color: #f0b653;
+.pricebtn,
+.buybtn {
+  width: 30%; /* عرض یکسان برای دکمه‌ها */
+  background-color: #f0b653; /* رنگ پیش‌فرض دکمه */
   color: #363636;
   font-size: 1rem;
   border: none;
-  border-radius: 20px;
-  padding: 5px 20px;
-  justify-self: center;
-  margin-bottom: 1vh;
+  border-radius: 10px; /* حذف گوشه‌ها */
+  padding: 10px 15px; /* فاصله داخلی */
+  text-align: center; /* متن داخل دکمه وسط‌چین شود */
   cursor: pointer;
+  flex-shrink: 0; /* جلوگیری از تغییر اندازه */
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
 }
 .buybtn {
-  background-color: #a7c957;
+  background-color: #a7c957; /* رنگ متفاوت برای دکمه خرید */
   color: #272727;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 20px;
-  padding: 5px 50px;
-  cursor: pointer;
+  border-radius: 10px; /* یکنواخت بودن گوشه‌ها */
+  margin-left: 5px;
 }
 .icon {
+  margin-left: 10px; /* فاصله کوچک از دکمه‌ها */
   color: #f0b653;
+  font-size: 30px;
   cursor: pointer;
-  vertical-align: middle;
+  display: flex; /* برای نمایش صحیح */
+  align-items: center; /* وسط‌چین کردن آیکون */
 }
-.similarproducts{
+
+.similarproducts {
   width: 100%;
 }
 .product {
   padding: 0 50px;
 }
-.slick-prev{
+.slick-prev {
   color: #386641;
 }
-.title{
+.title {
   display: block;
   margin-top: 160px;
-  text-align: right;
+  text-align: center;
   color: #386641;
 }
 /* باکس توضیحات */
+
 .descriptionBox {
   margin-top: 20px; /* فاصله از بخش بالایی */
   padding: 15px; /* فاصله داخلی */
@@ -127,7 +133,6 @@
   line-height: 1.6; /* فاصله خطوط */
   color: #555; /* رنگ متن */
 }
-
 
 /* Media Queries برای دستگاه‌های کوچک‌تر */
 @media (max-width: 1024px) {
@@ -176,9 +181,6 @@
     line-height: 1.3; /* کاهش فاصله خطوط */
   }
 }
-
-
-
 
 /* Responsive */
 @media (max-width: 1300px) {
@@ -304,17 +306,15 @@
     /* display: flex;
     flex-direction: column; */
   }
-  .icon {
-    display: block;
-    justify-self: center;
+  .actions {
+    flex-direction: column; /* تغییر جهت دکمه‌ها به عمودی */
+    gap: 10px; /* فاصله کوچک بین دکمه‌ها در موبایل */
   }
+
+  .pricebtn,
   .buybtn {
-    font-size: 0.8rem;
-    padding: 5px 20px;
-  }
-  .pricebtn {
-    font-size: 0.8rem;
-    padding: 5px 15px;
+    width: 100%; /* عرض کامل در موبایل */
+    border-radius: 5px; /* گرد کردن یکنواخت */
   }
   .details p {
     font-size: 0.7rem;
@@ -422,30 +422,51 @@
   }
   .actions {
     width: 100%;
-    display: inline;
+    display: flex; /* استفاده از flexbox برای چیدمان */
+    flex-direction: column; /* چیدمان عمودی عناصر */
+    align-items: center; /* مرکز کردن عناصر به صورت افقی */
+    justify-content: center; /* مرکز کردن عناصر به صورت عمودی */
   }
+
   .pricebtn {
     font-size: 0.7rem;
     padding: 5px 10px;
-    float: left;
-    width: 40%;
+    width: 50%; /* عرض دکمه برای متناسب شدن */
+    margin-bottom: 10px; /* فاصله از دکمه پایین */
+    background-color: #f0b653;
+    color: #363636;
+    border: none;
+    border-radius: 10px;
+    text-align: center; /* متن داخل دکمه وسط‌چین شود */
+    cursor: pointer;
   }
+
   .buy {
-    width: 50%;
-    float: right;
+    display: flex; /* چیدمان افقی برای دکمه و آیکن */
+    align-items: center; /* مرکز کردن آیتم‌ها به صورت عمودی */
+    justify-content: center; /* مرکز کردن آیتم‌ها */
+    width: 100%; /* عرض کامل */
+    margin-left: 15%;
   }
+
   .buybtn {
     font-size: 0.7rem;
-    padding: 5px 8px;
-    float: inline-start;
-    vertical-align: middle;
+    padding: 5px 15px; /* فاصله داخلی دکمه */
+    background-color: #a7c957;
+    color: #272727;
+    border: none;
+    border-radius: 10px;
+    margin-right: 10px; /* فاصله از آیکن */
+    cursor: pointer;
+    text-align: center; /* متن وسط‌چین شود */
   }
 
   .icon {
-    display: inline;
-    justify-self: center;
-    float: inline-start;
+    font-size: 1.2rem; /* اندازه مناسب آیکن */
+    color: #f0b653;
+    cursor: pointer;
   }
+
   .details p {
     font-size: 0.6rem;
   }

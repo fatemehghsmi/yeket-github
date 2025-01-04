@@ -7,18 +7,19 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "../Components/Card/ProductCard";
-import CategoryCard from "../components/CategoryCard/CategoryCard";
+import CategoryCard from "../Components/CategoryCard/CategoryCard";
 
-import SubCategoryCard from "../components/SubCategoryCard/SubCategoryCard";
-import Newest from "../components/Newest/Newest";
+import SubCategoryCard from "../Components/SubCategoryCard/SubCategoryCard";
+import Newest from "../Components/Newest/Newest";
 
 function CategoryPage() {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState({});
   useEffect(() => {
     getData();
-  }, []);
+  }, [currentCategory]);
 
   const getData = async () => {
     const response = await axios.get(
@@ -28,8 +29,13 @@ function CategoryPage() {
     const categoriesResponse = await axios.get(
       "https://yeket.liara.run/api/store/collections/"
     );
+
+    const currentCategoryResponse = await axios.get(
+      `https://yeket.liara.run/api/store/collections/${id}`
+    );
     setProducts(response.data);
     setCategories(categoriesResponse.data);
+    setCurrentCategory(currentCategoryResponse.data);
   };
   var settings = {
     dots: true,
@@ -66,20 +72,7 @@ function CategoryPage() {
   };
   return (
     <div className={styles.body}>
-      <h1 className={styles.categoryName}>مد و پوشاک</h1>
-      <Link to="/bestsellers">
-        <h2 className={styles.title}>
-          <GrFormNext className={styles.morebtn} size="30px" />
-          پرفروش ترین ها
-        </h2>
-      </Link>
-      <div className={styles.container}>
-        <Slider {...settings}>
-          {products.map((product) => (
-            <ProductCard product={product} key={product.id} />
-          ))}
-        </Slider>
-      </div>
+      <h1 className={styles.categoryName}>{currentCategory.title}</h1>
       <div className={styles.subCategory}>
         {categories.map(
           (subCategory) =>
@@ -87,6 +80,19 @@ function CategoryPage() {
               <SubCategoryCard subCategory={subCategory} key={subCategory.id} />
             )
         )}
+      </div>
+      <div className={styles.container}>
+        <Link to="/bestsellers">
+          <h2 className={styles.title}>
+            <GrFormNext className={styles.morebtn} size="30px" />
+            پرفروش ترین ها
+          </h2>
+        </Link>
+        <Slider {...settings}>
+          {products.map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
+        </Slider>
       </div>
       <Newest />
     </div>

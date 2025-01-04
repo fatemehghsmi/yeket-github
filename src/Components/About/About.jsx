@@ -9,12 +9,12 @@ function About() {
     <div className={styles.container}>
         <div className={styles.part}>
             <img src={shop} alt="" />
-            <p className={styles.title}>خرید <br/>با کمترین قیمت</p>
+            <p className={styles.title}>مناسب ترین قیمت</p>
            
         </div>
         <div className={styles.part}>
             <img src={question} alt="" />
-            <p className={styles.title}>پشتیبانی<br/> 24 ساعته</p>
+            <p className={styles.title}>پشتیبانی 24 ساعته</p>
         </div>
         <div className={styles.part}>
             <img src={delivery} alt="" />

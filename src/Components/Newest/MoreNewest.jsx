@@ -5,6 +5,8 @@ import { GrFormNext } from "react-icons/gr";
 import axios from "axios";
 import "../../Fonts/B-NAZANIN.ttf";
 import { FaSortAmountDown } from "react-icons/fa";
+import { Link } from "react-router-dom"; 
+
 function MoreNewest() {
   const [products, setProducts] = useState([]);
   const [categorys, setCategorys] = useState([]);
@@ -37,7 +39,16 @@ function MoreNewest() {
         <div className={styles.sidebar}>
           <h4>همه</h4>
           {categorys.map(
-            (item) => item.parent == null && <p key={item.id}>{item.title}</p>
+            (item) => item.parent == null && 
+            <Link
+                  to={item.subcollection_ids.length
+                    ? `/category/${item.id}`
+                    : `/subcategory/${item.id}`} // مسیر صفحه دسته‌بندی
+                  key={item.id}
+                  className={styles.categoryLink} // اضافه کردن کلاس برای استایل
+                >
+            <p key={item.id}>{item.title}</p>
+            </Link>
           )}
           <div className={styles.sortcontainer}>
             <h3>
@@ -47,7 +58,7 @@ function MoreNewest() {
             <p>ارزان ترین</p>
             <p>گران ترین</p>
             <p>مورد علاقه ها</p>
-            <p>پیشنهاد حامی</p>
+            <p>پیشنهاد یکت</p>
           </div>
         </div>
       </div>

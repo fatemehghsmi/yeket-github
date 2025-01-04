@@ -13,7 +13,7 @@
   display: table;
   width: 100%;
   height: fit-content;
-  border-bottom: solid 2px #f2f2f2;
+  /* border-bottom: solid 2px #f2f2f2; */
 }
 
 .btn {
@@ -49,16 +49,29 @@
   margin: 0;
   vertical-align: middle;
 }
+.header2 {
+  font-size: 1.5rem;
+  font-family: "DimaSogand";
+  color: #6a994e;
+  float: right;
+  padding: 0;
+  margin: 0px 10px;
+  vertical-align: middle;
+  margin-top: 5px;
+}
 
 /* کانتینر دوم */
 .container2 {
   display: flex;
   justify-content: space-between; /* تقسیم‌بندی بخش‌ها */
-  align-items: center;
+  align-items: center; /* مرکز کردن عمودی عناصر فرزند */
   width: 100%;
   height: fit-content;
-  padding-top: 1%;
+  padding: 10px 0; /* اضافه کردن فضای داخلی عمودی */
   flex-wrap: nowrap; /* جلوگیری از انتقال عناصر به خط بعدی */
+  background-color: #f2e8cf;
+  border-radius: 30px;
+  box-sizing: border-box; /* اطمینان از اینکه padding در ارتفاع و عرض لحاظ شود */
 }
 
 /* بخش راست (دسته‌بندی و جستجو) */
@@ -67,50 +80,58 @@
   align-items: center;
   gap: 15px; /* فاصله بین دسته‌بندی و جستجو */
   flex-wrap: wrap; /* انتقال عناصر به خط بعدی فقط در صورت نیاز */
+  padding: 0px 20px;
 }
 
 /* دکمه دسته‌بندی */
 .categoryButton {
   background: none;
   color: #386641;
-  font-family: "Vazir";
   font-size: 1.2rem;
+  font-family: "Vazir-FD-WOL";
   border: none;
   cursor: pointer;
+  vertical-align: middle;
 }
 
 /* آیکن‌ها */
 .iconsWrapper {
   display: flex;
-  gap: 20px; /* فاصله بین آیکن‌ها */
+  align-items: center; /* مرکز کردن عمودی آیکن‌ها */
+  justify-content: flex-start; /* قرار دادن آیکن‌ها در ابتدای کانتینر (سمت چپ) */
+  gap: 5px; /* فاصله بین آیکن‌ها */
   font-size: 20px; /* اندازه بزرگ‌تر برای آیکن‌ها */
-  margin-left: 40px;
-  justify-content: flex-start; /* آیکن‌ها در سمت چپ بمانند */
+  margin-left: 10px; /* فاصله از سمت چپ */
+  flex-shrink: 0; /* جلوگیری از کوچک شدن آیکن‌ها */
+  height: 100%; /* پر کردن ارتفاع کانتینر والد */
+  flex-direction: row; /* اطمینان از قرار گرفتن آیکن‌ها در یک خط افقی */
 }
 
-/* جلوگیری از جابه‌جایی آیکن‌ها در حالت ریسپانسیو */
-.iconsWrapper {
-  flex-shrink: 0;
-}
-
-/* آیکن‌ها */
 .icon {
   width: 28px; /* عرض بزرگ‌تر */
   height: 28px; /* ارتفاع بزرگ‌تر */
   color: #f0b653;
   cursor: pointer;
+  margin-left: 20px; /* فاصله بین آیکن‌ها */
+  display: inline-flex; /* حفظ ساختار خطی آیکن‌ها */
+  align-items: center; /* مرکز کردن عمودی هر آیکن */
 }
 
 /* تنظیم ورودی جستجو */
 .searchWrapper {
   position: relative;
-  display: inline-block;
-  width: 300px; /* عرض مشخص برای input و نتایج */
+  display: flex;
+  align-items: center; /* مرکز کردن عمودی محتوا */
+  justify-content: flex-end; /* قرار دادن محتوا در انتهای راست */
+  width: 50%; /* عرض مشخص برای input و نتایج */
   text-align: right; /* راست‌چین کردن متن */
+  margin-left: 0; /* حذف هرگونه حاشیه */
+  padding: 0; /* حذف هرگونه padding اضافی */
+  height: 100%; /* پر کردن ارتفاع کانتینر والد */
 }
 
 .input {
-  width: 86%;
+  width: 100%;
   padding: 10px 35px 10px 10px; /* فضای کافی برای آیکن سمت چپ */
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -196,52 +217,70 @@
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 600px) {
+  .header2 {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  .container2 {
+    flex-wrap: wrap;
+    justify-content: space-between; /* چینش صحیح بخش‌ها */
+  }
+
   .searchWrapper {
-    width: 60%; /* عرض کمتر */
-    margin-bottom: 10px;
+    width: 100%; /* عرض کمتر برای بخش جستجو */
+    order: 3; /* بخش جستجو در خط اول */
+    margin: 5px 20px;
   }
 
   .iconsWrapper {
-    font-size: 18px; /* آیکن‌ها کوچک‌تر */
-    gap: 15px;
+    flex-direction: row; /* آیکن‌ها در کنار جستجو قرار بگیرند */
+    justify-content: flex-start;
+    order: 1;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
+  .header1 {
+    font-size: 1.5rem;
+  }
+  .header2 {
+    font-size: 0.8rem;
+    margin-top: 10px;
+  }
+  .container2 {
+    flex-wrap: wrap;
+    justify-content: space-between; /* چینش صحیح بخش‌ها */
+  }
   .searchWrapper {
-    width: 70%;
+    width: 100%; /* عرض کامل */
+    /* margin-right: 20%; */
+    order: 3;
   }
 
-  .btn {
-    font-size: 1rem; /* متن کوچک‌تر */
+  .iconsWrapper {
+    align-self: self-start;
   }
 
   .icon {
     width: 24px;
     height: 24px;
   }
-
-  .header {
-    font-size: 1.5rem; /* متن کوچک‌تر */
+  .categoryButton {
+    font-size: 1rem;
   }
-}
-
-@media (max-width: 400px) {
-  .searchWrapper {
-    width: 100%;
-  }
-
-  .icon {
-    width: 20px;
-    height: 20px;
-  }
-
   .btn {
     font-size: 0.9rem; /* متن کوچک‌تر */
+    vertical-align: middle;
+    margin-top: 8px;
   }
 
   .header {
     font-size: 1.3rem;
+    vertical-align: middle;
+    margin-top: 5px;
+  }
+  .logo {
+    padding-top: 0;
   }
 }

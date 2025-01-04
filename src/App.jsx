@@ -1,25 +1,26 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import ProductDetail from "./Pages/ProductDetail";
 import BestSellers from "./Pages/BestSellers";
 import Newests from "./Pages/Newests";
-import AboutYeket from "./pages/AboutYeket";
-import ContactYeket from "./pages/ContactYeket";
-import ContactSupportYeket from "./pages/ContactSupportYeket";
-import AnswersQuestions from "./pages/AnswersQuestions";
-import HowToSell from "./pages/HowToSell";
+import AboutYeket from "./Pages/AboutYeket";
+import ContactYeket from "./Pages/ContactYeket";
+import ContactSupportYeket from "./Pages/ContactSupportYeket";
+import AnswersQuestions from "./Pages/AnswersQuestions";
+import HowToSell from "./Pages/HowToSell";
 import HowToBuy from "./pages/HowToBuy";
-import ContactSalesSupport from "./pages/ContactSalesSupport";
+import ContactSalesSupport from "./Pages/ContactSalesSupport";
 import PaymentGuide from "./pages/PaymentGuide";
-import PurchaseConditions from "./pages/PurchaseConditions";
-import Returning from "./pages/Returning";
-import SendOrder from "./pages/SendOrder";
-import TermsOfSale from "./pages/TermsOfSale";
-import ReaportInYeket from "./pages/ReaportInYeket";
+import PurchaseConditions from "./Pages/PurchaseConditions";
+import Returning from "./Pages/Returning";
+import SendOrder from "./Pages/SendOrder";
+import TermsOfSale from "./Pages/TermsOfSale";
+import ReaportInYeket from "./Pages/ReaportInYeket";
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import VendorProducts from "./Pages/VendorProducts";
+import ScrollToTop from "./Components/ScrollToTop/ScrollToTop"; // مسیر فایل ScrollToTop
 
 import styles from "./App.module.css";
 import CategoryPage from "./Pages/CategoryPage";
@@ -30,6 +31,7 @@ function App() {
     <>
       <div className={styles.container}>
         <Header />
+        <ScrollToTop />
         <Routes>
           <Route path="/newests" element={<Newests />} />
           <Route path="/bestsellers" element={<BestSellers />} />

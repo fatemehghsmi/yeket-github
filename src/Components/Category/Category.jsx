@@ -23,9 +23,9 @@ function Category() {
     dots: true,
     infinite: true,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 4,
     autoplay: true,
-    speed: 2000,
+    speed: 4000,
     autoplaySpeed: 3000,
     pauseOnHover: true,
     responsive: [
@@ -33,14 +33,14 @@ function Category() {
         breakpoint: 800,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
         },
       },
       {
         breakpoint: 500,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
           dots: false,
         },
       },
@@ -49,7 +49,7 @@ function Category() {
   return (
     <div>
       <h2 className={styles.title}>
-        <GrFormNext className={styles.morebtn} size="30px" />
+        {/* <GrFormNext className={styles.morebtn} size="30px" /> */}
         دسته بندی
       </h2>
       <div className={styles.container}>

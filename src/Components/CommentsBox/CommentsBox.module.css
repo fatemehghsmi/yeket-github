@@ -11,16 +11,29 @@
   flex-wrap: wrap; /* برای دستگاه‌های کوچک ستون‌ها را زیر هم ببرد */
 }
 
+.cmd {
+  color: rgb(62, 62, 62);
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.commentDate {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 5px;
+}
+
 /* ستون کامنت‌های مثبت */
 .positiveColumn {
   flex: 0 0 35%; /* عرض هر ستون 35% از کل کانتینر */
   max-width: 35%; /* حداکثر عرض ستون */
   padding: 10px;
   background-color: transparent; /* حذف پس‌زمینه ستون */
-  border-right: 1px solid #ddd; /* خط جداکننده بین ستون‌ها */
   display: flex;
   flex-direction: column; /* چینش عمودی */
   gap: 15px; /* فاصله بین کامنت‌ها */
+  position: relative;
 }
 
 /* ستون کامنت‌های منفی */
@@ -32,6 +45,27 @@
   display: flex;
   flex-direction: column; /* چینش عمودی */
   gap: 15px; /* فاصله بین کامنت‌ها */
+  position: relative;
+}
+
+/* اسکرول برای ستون‌ها */
+.scrollable {
+  max-height: 300px; /* حداکثر ارتفاع برای نمایش اسکرول */
+  overflow-y: auto; /* فعال کردن اسکرول عمودی */
+  padding-right: 5px; /* کمی فاصله از سمت راست */
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 /* استایل هر کامنت */
@@ -74,6 +108,38 @@
   margin-bottom: auto; /* فاصله بین متن و ادامه */
 }
 
+/* دکمه افزودن به سبد خرید */
+.addToCartBtn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  align-self: flex-start; /* تنظیم دکمه در انتهای کامنت */
+}
+
+.addToCartBtn:hover {
+  background-color: #45a049; /* رنگ پس‌زمینه هنگام هاور */
+}
+
+/* دکمه حذف از سبد خرید */
+.removeFromCartBtn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  align-self: flex-start; /* تنظیم دکمه در انتهای کامنت */
+}
+
+.removeFromCartBtn:hover {
+  background-color: #e53935; /* رنگ پس‌زمینه هنگام هاور */
+}
+
 /* استایل لینک ادامه */
 .readMore {
   color: #ff9800;
@@ -97,6 +163,5 @@
   .negativeColumn {
     flex: 0 0 100%; /* هر ستون تمام عرض را بگیرد */
     max-width: 100%; /* تنظیم عرض به 100% */
-    border-right: none; /* خط جداکننده را حذف کن */
   }
 }
