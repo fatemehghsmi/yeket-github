@@ -1,0 +1,35 @@
+.title {
+  color: #386641;
+  font-size: 1.2rem;
+  font-family: "Vazir-FD-WOL";
+  text-align: right;
+  cursor: pointer;
+}
+.morebtn {
+  color: #f0b653;
+  rotate: 180deg;
+  size: 30px;
+  margin-right: 5px;
+  vertical-align: middle;
+
+}
+.container {
+  margin-bottom: 15vh;
+}
+
+
+/* Responsive */
+@media (max-width: 800px) {
+ 
+  .title{
+    font-size: 1rem;
+  }
+  .container {
+    margin-bottom: 9vh;
+  }
+}
+@media (max-width: 400px) {
+  .title{
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,190 @@
+.footer {
+  background-color: #386641;
+  height: fit-content;
+  padding: 20px 10px;
+  color: #f2e8cf;
+}
+
+/* بخش بالایی */
+.top {
+  padding: 10px 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logo span {
+  color: #f0b653;
+  font-size: 40px;
+}
+
+.logo img {
+  width: 60px;
+  margin-right: 10px;
+}
+
+.backToTop button {
+  background: none;
+  font-size: 18px;
+  padding: 10px 30px;
+  color: #f0b653;
+  border: 1px solid #f0b653;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.backToTop button:hover {
+  background-color: #f0b653;
+  color: #386641;
+}
+
+/* بخش میانی */
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 50px;
+  color: #f2e8cf;
+}
+
+.content h1 {
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+  color: #f2e8cf;
+}
+
+.content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.content ul li {
+  margin-bottom: 10px;
+}
+
+.content ul li a {
+  text-decoration: none;
+  color: #f2e8cf;
+  transition: all 0.3s ease;
+}
+
+.content ul li a:hover {
+  color: #f0b653;
+  text-decoration: underline;
+}
+
+/* شبکه‌های اجتماعی */
+.socialMediaContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.socialMedia {
+  display: flex;
+  gap: 15px;
+}
+
+.socialMedia a {
+  text-decoration: none;
+}
+
+.socialMediaIcon {
+  font-size: 30px;
+  color: #f0b653;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.socialMediaIcon:hover {
+  color: #f2e8cf;
+}
+
+/* لینک پایین */
+.link {
+  color: #f2e8cf;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.link a {
+  text-decoration: none;
+  color: #f2e8cf;
+  transition: color 0.3s ease;
+}
+
+.link a:hover {
+  color: #f0b653;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .top {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo span {
+    font-size: 30px;
+  }
+
+  .logo img {
+    width: 50px;
+  }
+
+  .content {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .content h1 {
+    font-size: 1.2rem;
+  }
+
+  .socialMediaContainer {
+    padding: 10px 0;
+  }
+
+  .socialMedia a {
+    text-decoration: none;
+  }
+
+  .socialMediaIcon {
+    color: #f0b653;
+    transition: color 0.3s ease;
+  }
+
+  .socialMediaIcon:hover {
+    color: #f2e8cf;
+  }
+}
+
+@media (max-width: 480px) {
+  .top {
+    padding: 10px;
+  }
+
+  .content {
+    padding: 10px;
+    gap: 20px;
+  }
+
+  .socialMediaIcon {
+    font-size: 25px;
+  }
+
+  .link {
+    font-size: 0.8rem;
+  }
+}

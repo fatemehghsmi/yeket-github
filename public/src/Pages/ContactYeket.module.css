@@ -1,0 +1,87 @@
+.contactContainer {
+  background-color: #f2e8cf;
+  color: #386641;
+  padding: 20px;
+  margin: 40px auto; /* فاصله از هدر و فوتر */
+  max-width: 1200px;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #386641;
+}
+
+.phoneNumber {
+  font-size: 1.5rem;
+  color: #f0b653;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  /* برای تبلت */
+  .aboutContainer,
+  .contactContainer,
+  .reportContainer,
+  .supportContainer {
+    padding: 10px 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .textarea {
+    height: 120px;
+  }
+
+  .input,
+  .textarea {
+    font-size: 0.9rem;
+  }
+
+  .submitButton {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* برای موبایل */
+  .aboutContainer,
+  .contactContainer,
+  .reportContainer,
+  .supportContainer {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .textarea {
+    height: 100px;
+  }
+
+  .input,
+  .textarea {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .submitButton {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+  }
+
+  .phone {
+    font-size: 0.9rem;
+  }
+}

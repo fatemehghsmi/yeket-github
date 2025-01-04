@@ -1,0 +1,49 @@
+.body {
+  margin-top: 30px;
+}
+
+.categoryName {
+  text-align: center;
+  font-family: Lalezar;
+}
+
+.title {
+  color: #386641;
+  font-size: 1.2rem;
+  font-family: "Vazir-FD-WOL";
+  text-align: right;
+  cursor: pointer;
+}
+.morebtn {
+  color: #f0b653;
+  rotate: 180deg;
+  size: 30px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.container {
+  margin-bottom: 15vh;
+}
+
+.subCategory {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .title {
+    font-size: 1rem;
+  }
+  .container {
+    margin-bottom: 9vh;
+  }
+}
+@media (max-width: 400px) {
+  .title {
+    font-size: 0.8rem;
+  }
+}

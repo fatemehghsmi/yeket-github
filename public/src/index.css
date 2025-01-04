@@ -1,0 +1,17 @@
+/* @font-face {
+  font-family: "IranianSans";
+  src: local("IranianSans"), url(./Fonts/IranianSans.ttf) format("truetype");
+} */
+@font-face {
+  font-family: "Vazir-FD-WOL";
+  src: local("Vazir-FD-WOL"), url(./Fonts/Vazir-FD-WOL.ttf) format("truetype");
+}
+button {
+  font-family: "Vazir-FD-WOL";
+}
+
+body {
+  background-color: white;
+  /* padding: 0% 5%; */
+  font-family: "Vazir-FD-WOL";
+}
