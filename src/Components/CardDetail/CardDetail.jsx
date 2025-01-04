@@ -216,7 +216,8 @@ function CardDetail() {
             </p>
           </Link>
           <p>
-            نظرات: <span>4 نظر مثبت 4نظر منفی</span>
+            نظرات: <span>4 نظر مثبت </span>
+            <span style={{ color: "blue" }}>4 نظر منفی</span>
           </p>
           {/* <p>
             وضعیت: <span>{product.stock > 0 ? "موجود" : "ناموجود"} </span>
@@ -235,8 +236,8 @@ function CardDetail() {
         <button className={styles.buybtn}>افزودن به سبد خرید</button>
         <span className={styles.icon} onClick={likeHandeler}>
           {like ? <GoHeartFill size={33} /> : <GoHeart size={33} />}
-          <IoShareSocialOutline size={30} />
         </span>
+        <IoShareSocialOutline className={styles.icon} size={30} />
       </div>
 
       <div className={styles.title}>
