@@ -4,7 +4,6 @@
   flex-direction: row-reverse; /* سایدبار به سمت راست */
   gap: 20px;
   margin: 20px;
-  font-family: Arial, sans-serif;
   direction: rtl; /* راست‌چین */
   text-align: right;
 }
