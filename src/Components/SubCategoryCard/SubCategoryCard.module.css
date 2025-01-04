@@ -1,21 +1,70 @@
-.container {
-  width: 13%;
-  height: 150px;
-  /* background-color: #555; */
-  margin: 0px 2px;
+/* ساختار کلی */
+.wrapper {
   display: flex;
-  flex-direction: column;
-  justify-items: center;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column; /* چینش عمودی متن و تصویر */
+  align-items: center; /* مرکزچین کردن محتوای کارت */
+  margin: 10px;
 }
 
+/* کانتینر اصلی کارت */
+.container {
+  width: 180px; /* عرض کارت */
+  height: 180px; /* ارتفاع کارت */
+  border-radius: 50%; /* گرد کردن کامل کارت */
+  overflow: hidden; /* جلوگیری از بیرون‌زدن تصویر */
+  background-color: transparent; /* پس‌زمینه شفاف */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* سایه ملایم */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* انیمیشن هاور */
+}
+
+/* افکت هاور */
+.container:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* افزایش سایه */
+}
+
+/* تصویر داخل کارت */
 .img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
+  width: 100%; /* عرض کامل تصویر */
+  height: 100%; /* ارتفاع کامل تصویر */
+  object-fit: cover; /* حفظ تناسب تصویر */
+  transition: transform 0.3s ease; /* انیمیشن برای بزرگ شدن تصویر */
 }
 
+/* افکت هاور برای تصویر */
+.container:hover .img {
+  transform: scale(1.1); /* بزرگنمایی ملایم تصویر */
+}
+
+/* عنوان زیر کارت */
 .title {
-  text-align: center;
+  font-size: 1rem; /* اندازه مناسب متن */
+  color: #386641; /* رنگ سبز */
+  text-align: center; /* مرکزچین کردن متن */
+  margin-top: 10px; /* فاصله از کارت */
+  font-weight: bold; /* ضخیم‌تر کردن متن */
+  max-width: 180px; /* محدود کردن عرض متن */
+  word-wrap: break-word; /* شکستن متن بلند */
+}
+@media (max-width: 768px) {
+  .container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .title {
+    font-size: 0.9rem;
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .title {
+    font-size: 0.8rem;
+    max-width: 120px;
+  }
 }

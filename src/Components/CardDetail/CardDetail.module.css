@@ -1,12 +1,12 @@
 .mother {
   height: fit-content;
-  margin-bottom: 50px;
+  margin-bottom: 40vh;
 }
 .container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 13vh;
 }
 .images {
   width: 55%;

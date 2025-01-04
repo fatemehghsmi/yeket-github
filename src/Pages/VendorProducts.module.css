@@ -21,10 +21,7 @@
   justify-content: center; /* قرار دادن کارت‌ها در مرکز */
   align-items: center; /* تراز عمودی کارت‌ها */
   width: 100%;
-  
 }
-
-
 
 .productCard:hover {
   transform: scale(1.05); /* انیمیشن بزرگ شدن در هاور */

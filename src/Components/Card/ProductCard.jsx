@@ -8,11 +8,13 @@ function ProductCard({ product }) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
   return (
-    <Link to={`/product/${product.id}`} >
+    <Link to={`/product/${product.id}`}>
       <div className={styles.card}>
         <img src={product.images[0].image} alt="" className={styles.img} />
         <p className={styles.title}>{product.title}</p>
-        <button className={styles.price}>{formatNumber(product.unit_price)}&nbsp; تومان</button>
+        <button className={styles.price}>
+          تومان{formatNumber(product.unit_price)}
+        </button>
       </div>
     </Link>
   );

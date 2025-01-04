@@ -6,14 +6,14 @@ const SubCategoryCard = ({ subCategory }) => {
   const link = subCategory.subcollection_ids.length
     ? `/category/${subCategory.id}`
     : `/subcategory/${subCategory.id}`;
-  console.log(link);
+  // console.log(subCategory.title);
 
   return (
     <Link to={link}>
       <div className={styles.container}>
         <img src={subCategory.image} alt="" className={styles.img} />
-        <h4 className={styles.title}>{subCategory.title}</h4>
       </div>
+      <h1 className={styles.title}>{subCategory.title}</h1>
     </Link>
   );
 };
