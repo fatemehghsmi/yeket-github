@@ -1,0 +1,88 @@
+.selectionBoxes {
+  display: flex;
+  flex-direction: column; /* چیدمان عمودی باکس‌ها */
+  gap: 10px; /* کاهش فاصله بین باکس‌ها */
+  margin-bottom: 20px;
+  justify-content: flex-start; /* شروع از سمت راست */
+  align-items: flex-start; /* راست‌چین کردن محتوا */
+  direction: rtl; /* راست‌چین کردن متن */
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* فاصله کمتر بین عنوان و select */
+  width: 100%; /* عرض کامل */
+  max-width: 180px; /* حداکثر عرض کاهش یافته */
+}
+
+label {
+  font-size: 0.9rem; /* کوچک‌تر کردن اندازه متن */
+  color: #595757; /* رنگ متن لیبل */
+}
+
+select {
+  padding: 6px; /* کاهش فاصله داخلی */
+  border: 1.5px solid #386641;
+  border-radius: 4px;
+  font-size: 12px; /* کوچک‌تر کردن اندازه متن */
+  font-family: "Vazir", sans-serif; /* فونت سایت */
+  text-align: right; /* راست‌چین کردن متن داخل dropdown */
+  text-align-last: right; /* راست‌چین کردن گزینه‌های انتخاب‌شده */
+  background-color: #f9f9f9; /* پس‌زمینه ملایم */
+  color: #386641; /* رنگ متن هماهنگ با تم سایت */
+  transition: all 0.3s ease; /* اضافه کردن انیمیشن تغییر */
+  width: 100%; /* عرض کامل */
+  max-width: 180px; /* حداکثر عرض کمتر */
+}
+
+select:focus {
+  border-color: #f0b653; /* تغییر رنگ حاشیه در فوکوس */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* سایه در حالت فوکوس */
+}
+
+select option {
+  background-color: #f2e8cf; /* پس‌زمینه گزینه‌ها */
+  color: #386641; /* رنگ متن گزینه‌ها */
+}
+
+/* ریسپانسیو برای دستگاه‌های کوچک‌تر */
+@media (max-width: 768px) {
+  .selectionBoxes {
+    align-items: center; /* وسط‌چین کردن باکس‌ها */
+  }
+
+  .box {
+    width: 100%; /* عرض کامل */
+    max-width: 150px; /* حداکثر عرض کاهش یافته */
+  }
+
+  select {
+    font-size: 11px; /* کوچک‌تر کردن اندازه متن */
+    padding: 5px; /* کاهش padding */
+  }
+
+  label {
+    font-size: 11px; /* کوچک‌تر کردن اندازه لیبل */
+  }
+}
+
+@media (max-width: 480px) {
+  .selectionBoxes {
+    align-items: center; /* وسط‌چین کردن باکس‌ها */
+  }
+
+  .box {
+    width: 100%; /* عرض کامل */
+    max-width: 130px; /* حداکثر عرض در دستگاه‌های خیلی کوچک */
+  }
+
+  select {
+    font-size: 10px; /* کوچک‌تر کردن متن */
+    padding: 4px; /* کاهش بیشتر padding */
+  }
+
+  label {
+    font-size: 10px; /* کوچک‌تر کردن اندازه لیبل */
+  }
+}
