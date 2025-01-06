@@ -233,9 +233,8 @@ function CardDetail() {
       </div>
       <div className={styles.noticeBox}>
         <p className={styles.noticeText}>
-          ارسال مرسوله با <span className={styles.highlight}>تیپاکس</span> انجام
-          می‌شود و به صورت{" "}
-          <span className={styles.highlight}>پرداخت درب منزل</span> می‌باشد.
+          تمامی ارسال کالا ها با تیپاکس انجام میشود و هزینه پرداخت آن توسط لینک
+          به خریدار فرستاده می شود
         </p>
       </div>
       <div className={styles.title}>

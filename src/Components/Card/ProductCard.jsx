@@ -13,7 +13,7 @@ function ProductCard({ product }) {
         <img src={product.images[0].image} alt="" className={styles.img} />
         <p className={styles.title}>{product.title}</p>
         <button className={styles.price}>
-          تومان{formatNumber(product.unit_price)}
+          {formatNumber(product.unit_price)}&nbsp; تومان
         </button>
       </div>
     </Link>

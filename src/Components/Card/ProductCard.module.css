@@ -34,6 +34,7 @@
 }
 
 .price {
+  direction: rtl;
   width: 90%; /* عرض دکمه قیمت کمتر از کارت */
   background-color: #386641;
   color: #f2e8cf;

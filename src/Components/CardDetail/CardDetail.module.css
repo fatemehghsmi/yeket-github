@@ -61,6 +61,7 @@
 }
 .pricebtn,
 .buybtn {
+  direction: rtl;
   width: 30%; /* عرض یکسان برای دکمه‌ها */
   background-color: #f0b653; /* رنگ پیش‌فرض دکمه */
   color: #363636;
@@ -103,7 +104,7 @@
   text-align: center;
   color: #386641;
 }
-.negetivcmd{
+.negetivcmd {
   color: red;
 }
 /* باکس توضیحات */
@@ -177,14 +178,14 @@
 }
 
 .noticeText {
-  font-size: 1rem; /* اندازه متن */
+  font-size: 1.5rem; /* اندازه متن */
   line-height: 1.6; /* فاصله خطوط */
   color: #004d40; /* رنگ متن سبز تیره هماهنگ با رنگ تیپاکس */
   font-family: "Vazir", sans-serif; /* استفاده از فونت سایت */
 }
 
 .highlight {
-  color: #02733E; /* رنگ سبز تیره‌تر برای تاکید */
+  color: #02733e; /* رنگ سبز تیره‌تر برای تاکید */
   font-weight: bold; /* ضخیم‌تر کردن متن */
 }
 
@@ -230,12 +231,6 @@
   margin: 0;
   line-height: 1.5;
 }
-
-
-
-
-
-
 
 /* Media Queries برای دستگاه‌های کوچک‌تر */
 @media (max-width: 1024px) {
