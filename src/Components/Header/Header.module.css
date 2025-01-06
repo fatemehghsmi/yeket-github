@@ -177,6 +177,9 @@
 
 /* آیتم‌های نتیجه */
 .resultItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   padding: 10px;
   color: #333;
   font-size: 0.9rem;
