@@ -171,7 +171,7 @@ function CardDetail() {
     <div className={styles.mother}>
       <div className={styles.container}>
         <div className={styles.images}>
-          <CustomSlider productId={product.id} />
+          <CustomSlider productId={id} />
         </div>
         <div className={styles.details}>
           {/* Breadcrumb */}
