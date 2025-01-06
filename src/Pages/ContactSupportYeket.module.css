@@ -4,7 +4,6 @@
   padding: 20px;
   margin: 40px auto; /* فاصله از هدر و فوتر */
   max-width: 1200px;
-  font-family: sans-serif;
 }
 
 h1 {
@@ -13,14 +12,21 @@ h1 {
   margin-bottom: 20px;
 }
 
+.input {
+  font-family: Vazir;
+  src: url(../Fonts/Vazir.ttf);
+}
+
 .input,
 .textarea {
-  width: 100%;
+  width: 98%;
   margin-bottom: 15px;
   padding: 10px;
   border: 1px solid #a7c957;
   border-radius: 5px;
   font-size: 1rem;
+  font-family: Vazir;
+  src: url(../Fonts/Vazir.ttf);
 }
 
 .textarea {

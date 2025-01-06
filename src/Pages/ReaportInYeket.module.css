@@ -4,7 +4,6 @@
   padding: 20px;
   margin: 40px auto; /* فاصله از هدر و فوتر */
   max-width: 1200px;
-  font-family: sans-serif;
 }
 
 h1 {
@@ -20,6 +19,8 @@ h1 {
   padding: 10px;
   border-radius: 5px;
   font-size: 1rem;
+  font-family: Vazir;
+  src: url(../Fonts/Vazir.ttf);
 }
 
 .submitButton {
