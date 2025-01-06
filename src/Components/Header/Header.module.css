@@ -131,7 +131,7 @@
 }
 
 .input {
-  width: 86%;
+  width: 100%;
   padding: 10px 35px 10px 10px; /* فضای کافی برای آیکن سمت چپ */
   border: 1px solid #ddd;
   border-radius: 10px;
