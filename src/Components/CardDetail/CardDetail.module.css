@@ -137,6 +137,106 @@
   color: #555; /* رنگ متن */
 }
 
+.breadcrumb {
+  direction: rtl; /* راست‌چین */
+  text-align: right; /* متن داخل راست‌چین */
+  font-family: "Vazir", sans-serif; /* فونت سایت */
+  font-size: 1rem; /* اندازه متن */
+  color: #386641; /* رنگ هماهنگ با تم سایت */
+  display: flex; /* نمایش خطی */
+  align-items: center; /* تراز عمودی */
+  gap: 5px; /* فاصله بین متن‌ها */
+}
+
+.breadcrumb span {
+  font-size: 1rem;
+  color: #595757; /* رنگ متن ثابت هماهنگ با تم سایت */
+}
+
+.breadcrumbLink {
+  color: #6a994e; /* رنگ لینک هماهنگ با تم سایت */
+  text-decoration: none; /* حذف زیرخط لینک */
+  font-weight: bold; /* ضخیم‌تر کردن متن لینک */
+  cursor: pointer;
+}
+
+.breadcrumbLink:hover {
+  color: #2c6e49; /* تغییر رنگ لینک هنگام هاور */
+}
+/* noticbox  */
+.noticeBox {
+  background-color: #e0f2f1; /* پس‌زمینه سبز روشن هماهنگ با رنگ تیپاکس */
+  border: none; /* حذف کادر */
+  border-radius: 10px; /* گوشه‌های گرد */
+  padding: 15px; /* فاصله داخلی */
+  margin-top: 20px; /* فاصله از بخش توضیحات */
+  text-align: center; /* مرکزچین */
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* سایه برای زیبایی */
+  direction: rtl; /* جهت راست به چپ */
+  animation: fadeIn 1s ease-in-out; /* انیمیشن ظاهر شدن */
+}
+
+.noticeText {
+  font-size: 1rem; /* اندازه متن */
+  line-height: 1.6; /* فاصله خطوط */
+  color: #004d40; /* رنگ متن سبز تیره هماهنگ با رنگ تیپاکس */
+  font-family: "Vazir", sans-serif; /* استفاده از فونت سایت */
+}
+
+.highlight {
+  color: #02733E; /* رنگ سبز تیره‌تر برای تاکید */
+  font-weight: bold; /* ضخیم‌تر کردن متن */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* باکس اطلاعیه غیر قابل مرجوعی */
+.returnNoticeWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.returnNoticeContent {
+  background-color: #fef8e6;
+  padding: 12px 20px;
+  border: 1px solid #ffd966;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  text-align: right;
+}
+
+.returnNoticeIcon {
+  font-size: 18px;
+  color: #ff6f61;
+  margin-right: 10px;
+}
+
+.returnNoticeText {
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+
+
+
+
+
+
 /* Media Queries برای دستگاه‌های کوچک‌تر */
 @media (max-width: 1024px) {
   .descriptionBox {

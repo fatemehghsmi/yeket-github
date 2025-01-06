@@ -1,41 +1,64 @@
-import { Component, useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { IoClose } from "react-icons/io5";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoShareSocialOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
-
-import styles from "./CardDetail.module.css";
 
 import { GoHeart } from "react-icons/go";
 import { GoHeartFill } from "react-icons/go";
 import MiniCard from "../Card/MiniCard";
-import ProductCard from "../Card/ProductCard";
 import CommentsBox from "../CommentsBox/CommentsBox";
-
 import CustomSlider from "../Slider/CustomSlider";
+import SelectionBoxes from "../SelectionBoxes/SelectionBoxes";
+
+import styles from "./CardDetail.module.css";
 
 function CardDetail() {
   function formatNumber(num) {
-    if (!num) return ""; // اگر مقدار عددی وجود ندارد
+    if (!num) return "";
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   const [like, setLike] = useState(false);
   const { id } = useParams();
+
+  const commentsRef = useRef(null); // مرجع برای بخش نظرات
+
   const likeHandeler = () => {
     setLike(!like);
+  };
+
+  const handleShare = () => {
+    const shareData = {
+      title: "مشاهده محصول",
+      text: "این محصول فوق‌العاده را مشاهده کنید:",
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      navigator
+        .share(shareData)
+        .then(() => console.log("اشتراک‌گذاری موفقیت‌آمیز بود"))
+        .catch((error) => console.error("خطا در اشتراک‌گذاری:", error));
+    } else {
+      alert(
+        "مرورگر شما از اشتراک‌گذاری بومی پشتیبانی نمی‌کند. لطفاً لینک زیر را کپی کنید:"
+      );
+      navigator.clipboard.writeText(window.location.href);
+    }
   };
 
   const [images, setImages] = useState([]);
   const [colors, setColors] = useState([]);
   const [product, setProduct] = useState({});
+  const [breadcrumb, setBreadcrumb] = useState(""); // برای ذخیره عنوان breadcrumb
   const [similarproducts, setSimilarproducts] = useState([]);
+
   useEffect(() => {
     getData();
   }, [id]);
@@ -48,6 +71,11 @@ function CardDetail() {
     setProduct(response.data);
     setColors(response.data.colors);
     setImages(response.data.images);
+
+    // ذخیره عنوان مجموعه برای breadcrumb
+    if (response.data.collection && response.data.collection.title) {
+      setBreadcrumb(response.data.collection.title);
+    }
 
     const similarRespons = await axios.get(
       "https://yeket.liara.run/api/store/products/"
@@ -63,9 +91,9 @@ function CardDetail() {
         style={{
           ...style,
           position: "absolute",
-          left: "-30px", // فاصله از لبه چپ
+          left: "-30px",
           top: "50%",
-          transform: "translateY(-50%)", // وسط‌چین در محور عمودی
+          transform: "translateY(-50%)",
           zIndex: 10,
           cursor: "pointer",
         }}
@@ -84,9 +112,9 @@ function CardDetail() {
         style={{
           ...style,
           position: "absolute",
-          right: "-40px", // فاصله از لبه راست
+          right: "-40px",
           top: "50%",
-          transform: "translateY(-50%)", // وسط‌چین در محور عمودی
+          transform: "translateY(-50%)",
           zIndex: 10,
           cursor: "pointer",
         }}
@@ -97,7 +125,7 @@ function CardDetail() {
     );
   }
 
-  var setting = {
+  const sliderSettings = {
     dots: true,
     infinite: true,
     slidesToShow: 5,
@@ -134,104 +162,59 @@ function CardDetail() {
     ],
   };
 
-  const settings = {
-    customPaging: function (i) {
-      return (
-        <a>
-          <img
-            className={styles.smallimg}
-            src={images[i].image}
-            // style={{
-            //   width: "100px",
-            //   height: "100px",
-            //   margin: " 20px 10px",
-            //   objectFit: "cover",
-            //   justifySelf: "center",
-            //   responsive: [
-            //     {
-            //       breakpoint: 1300,
-            //       settings: {
-            //         width: "35px",
-            //         height: "35px",
-            //         margin: " 10px 30px",
-            //       },
-            //     },
-            //     {
-            //       breakpoint: 830,
-            //       settings: {
-            //         width: "80px",
-            //         height: "80px",
-            //         margin: " 30px 10px",
-            //       },
-            //     },
-            //   ],
-            // }}
-          />
-        </a>
-      );
-    },
-    dots: true,
-    dotsClass: `slick-dots ${styles.customIndicator}`,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
+  // تابع اسکرول به بخش نظرات
+  const scrollToComments = () => {
+    commentsRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
   return (
     <div className={styles.mother}>
       <div className={styles.container}>
         <div className={styles.images}>
-          <div className="slider-container">
-            {/* <Slider {...settings} className={styles.slider}>
-              {images.map((item) => (
-                <div key={item.id}>
-                  <img
-                    src={item.image}
-                    alt={item.id}
-                    className={styles.image}
-                    />
-                    </div>
-                    ))}
-                    </Slider> */}
-            <CustomSlider productId={product.id} />
-          </div>
+          <CustomSlider productId={product.id} />
         </div>
         <div className={styles.details}>
+          {/* Breadcrumb */}
+          {product.collection && (
+            <div className={styles.breadcrumb}>
+              <span>دسته‌بندی / </span>
+              <Link
+                to={`/subcategory/${product.collection.id}`}
+                className={styles.breadcrumbLink}
+              >
+                {product.collection.title}
+              </Link>
+            </div>
+          )}
           <p>
             نام محصول: <span>{product.title}</span>
           </p>
-          {/* <p>
-            قیمت: <span>{product.unit_price}&nbsp; تومان </span>
-          </p> */}
-          {/* <p>
-            رنگ:
-            {colors.map((color, index) => (
-              <span key={index}>&nbsp; {color.title}&nbsp; </span>
-            ))}
-          </p> */}
           <Link to={`/vendor/${product.vendor}`}>
             <p>
               فروشنده: <span>{product.vendor}</span>
             </p>
           </Link>
-          <p>
+          <p onClick={scrollToComments} style={{ cursor: "pointer" }}>
             نظرات: <span>4 نظر مثبت </span>
-
-            
-          
-
-            <span style={{color:"red"}}>4 نظر منفی</span>
-
+            <span style={{ color: "red" }}>4 نظر منفی</span>
           </p>
-          {/* <p>
-            وضعیت: <span>{product.stock > 0 ? "موجود" : "ناموجود"} </span>
-          </p> */}
-          {/* بخش توضیحات به عنوان باکس جدا */}
+          <SelectionBoxes productId={id} />
           <div className={styles.descriptionBox}>
             <h3 className={styles.descriptionTitle}>توضیحات محصول</h3>
             <p className={styles.descriptionText}>{product.description}</p>
           </div>
+          {/* باکس اطلاعیه غیر قابل مرجوعی */}
+          {product.collection &&
+            product.collection.title === "لوازم آرایشی" && (
+              <div className={styles.returnNoticeWrapper}>
+                <div className={styles.returnNoticeContent}>
+                  <span className={styles.returnNoticeIcon}>🛑</span>
+                  <p className={styles.returnNoticeText}>
+                    توجه: این کالا به دلایل بهداشتی غیر قابل مرجوعی است.
+                  </p>
+                </div>
+              </div>
+            )}
         </div>
       </div>
       <div className={styles.actions}>
@@ -242,20 +225,30 @@ function CardDetail() {
         <span className={styles.icon} onClick={likeHandeler}>
           {like ? <GoHeartFill size={33} /> : <GoHeart size={33} />}
         </span>
-        <IoShareSocialOutline className={styles.icon} size={30} />
+        <IoShareSocialOutline
+          className={styles.icon}
+          size={30}
+          onClick={handleShare}
+        />
       </div>
-
+      <div className={styles.noticeBox}>
+        <p className={styles.noticeText}>
+          ارسال مرسوله با <span className={styles.highlight}>تیپاکس</span> انجام
+          می‌شود و به صورت{" "}
+          <span className={styles.highlight}>پرداخت درب منزل</span> می‌باشد.
+        </p>
+      </div>
       <div className={styles.title}>
         <h3>تجربه خرید مشتریان</h3>
       </div>
-      <div>
+      <div ref={commentsRef}>
         <CommentsBox />
       </div>
       <div className={styles.title}>
         <h3>محصولات مشابه</h3>
       </div>
       <div className={styles.similarproducts}>
-        <Slider {...setting}>
+        <Slider {...sliderSettings}>
           {similarproducts.map((item) => (
             <MiniCard product={item} key={item.id} className={styles.product} />
           ))}
