@@ -2,7 +2,7 @@
 .commentsContainer {
   display: flex; /* نمایش دو ستون کنار هم */
   direction: rtl; /* تنظیم جهت راست‌چین */
-  margin-top: 20px;
+  margin-top: 8px;
   padding: 0; /* حذف فاصله داخلی */
   background-color: transparent; /* پس‌زمینه کلی حذف شود */
   border-radius: 10px;

@@ -1,8 +1,9 @@
 .mother {
   height: fit-content;
   margin-bottom: 40vh;
-  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
+  overflow-y: hidden; /* حذف اسکرول عمودی */
 }
 .container {
   display: flex;
@@ -10,14 +11,16 @@
   justify-content: center;
   margin-top: 13vh;
   width: 100%;
+ 
 }
 .images {
   width: 55%;
+  max-width: 100%;
   height: fit-content;
   justify-content: center;
   justify-items: center;
   align-items: center;
-  margin-top: 0%;
+  margin-top: 8%;
 }
 .details {
   width: 40%;
@@ -101,6 +104,14 @@
 .slick-prev {
   color: #386641;
 }
+.slick-list {
+  overflow: hidden;
+}
+
+.slick-track {
+  display: flex;
+  max-width: 100%;
+}
 .title {
   display: block;
   margin-top: 160px;
@@ -178,6 +189,7 @@
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* سایه برای زیبایی */
   direction: rtl; /* جهت راست به چپ */
   animation: fadeIn 1s ease-in-out; /* انیمیشن ظاهر شدن */
+  margin-bottom: 0;
 }
 
 .noticeText {
