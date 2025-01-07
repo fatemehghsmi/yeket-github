@@ -25,6 +25,8 @@
   border: none;
   box-shadow: 0px 3px 6px #747474;
   border-radius: 20px;
+  padding-top: 10px;
+  padding-right: 30px;
 }
 .title {
   font-size: 1rem;

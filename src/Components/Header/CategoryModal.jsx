@@ -58,9 +58,9 @@ function CategoryModal({ category, setCategory }) {
   return (
     <div className={styles.container}>
       <div className={styles.category} ref={modalEl}>
-        <span className={styles.cross} onClick={() => setCategory(null)}>
+        {/* <span className={styles.cross} onClick={() => setCategory(null)}>
           <IoClose size="25px" />
-        </span>
+        </span> */}
         {loading ? ( // نمایش لودر هنگام بارگذاری
           <div className={styles.loading}>
             <FadeLoader

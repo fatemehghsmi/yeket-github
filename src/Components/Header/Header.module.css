@@ -92,6 +92,7 @@
   border: none;
   cursor: pointer;
   vertical-align: middle;
+  margin-right: 20px;
 }
 
 /* آیکن‌ها */
@@ -153,6 +154,7 @@
   pointer-events: none; /* جلوگیری از کلیک روی آیکن */
   margin: 0; /* حذف هرگونه فاصله */
   padding: 0; /* حذف هرگونه فاصله داخلی */
+  margin-left: 5px;
 }
 
 /* نتایج جستجو */

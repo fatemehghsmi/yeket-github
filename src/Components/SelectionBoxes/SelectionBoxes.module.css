@@ -1,69 +1,105 @@
 .selectionBoxes {
   display: flex;
-  flex-direction: column; /* چیدمان عمودی باکس‌ها */
-  gap: 10px; /* کاهش فاصله بین باکس‌ها */
+  flex-direction: column; /* چیدمان عمودی */
+  gap: 20px; /* فاصله بین باکس‌ها */
   margin-bottom: 20px;
-  justify-content: flex-start; /* شروع از سمت راست */
   align-items: flex-start; /* راست‌چین کردن محتوا */
   direction: rtl; /* راست‌چین کردن متن */
 }
 
-.box {
+.colorBox,
+.sizeBox,
+.quantityBox {
   display: flex;
   flex-direction: column;
-  gap: 8px; /* فاصله کمتر بین عنوان و select */
-  width: 100%; /* عرض کامل */
-  max-width: 180px; /* حداکثر عرض کاهش یافته */
+  gap: 5px; /* فاصله کمتر بین عنوان و گزینه‌ها */
 }
 
-label {
-  font-size: 0.9rem; /* کوچک‌تر کردن اندازه متن */
-  color: #595757; /* رنگ متن لیبل */
-}
-
-select {
-  padding: 6px; /* کاهش فاصله داخلی */
-  border: 1.5px solid #386641;
-  border-radius: 4px;
-  font-size: 12px; /* کوچک‌تر کردن اندازه متن */
+.labels {
+  font-size: 1rem; /* اندازه فونت */
+  color: #595757; /* رنگ مشابه نام محصول */
   font-family: "Vazir", sans-serif; /* فونت سایت */
-  text-align: right; /* راست‌چین کردن متن داخل dropdown */
-  text-align-last: right; /* راست‌چین کردن گزینه‌های انتخاب‌شده */
-  background-color: #f9f9f9; /* پس‌زمینه ملایم */
-  color: #386641; /* رنگ متن هماهنگ با تم سایت */
-  transition: all 0.3s ease; /* اضافه کردن انیمیشن تغییر */
-  width: 100%; /* عرض کامل */
-  max-width: 180px; /* حداکثر عرض کمتر */
+  text-align: right; /* راست‌چین کردن متن */
+  direction: rtl; /* جهت متن */
 }
 
-select:focus {
-  border-color: #f0b653; /* تغییر رنگ حاشیه در فوکوس */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* سایه در حالت فوکوس */
+.colorOptions {
+  display: flex;
+  gap: 10px; /* فاصله بین دایره‌های رنگ */
+  flex-wrap: wrap; /* چینش دایره‌ها در چند خط در صورت نیاز */
 }
 
-select option {
-  background-color: #f2e8cf; /* پس‌زمینه گزینه‌ها */
-  color: #386641; /* رنگ متن گزینه‌ها */
+.colorCircle {
+  width: 30px; /* عرض دایره */
+  height: 30px; /* ارتفاع دایره */
+  border-radius: 50%; /* گرد کردن دایره */
+  border: 2px solid transparent; /* بدون حاشیه در حالت عادی */
+  cursor: pointer;
+  transition: all 0.3s ease; /* انیمیشن تغییرات */
 }
 
-/* ریسپانسیو برای دستگاه‌های کوچک‌تر */
+.colorCircle:hover {
+  border: 2px solid #386641; /* حاشیه سبز تیره در حالت هاور */
+}
+
+.colorCircle.selected {
+  border: 2px solid #6A994E; /* حاشیه سبز روشن‌تر برای رنگ انتخاب‌شده */
+}
+
+.sizeDropdown {
+  padding: 8px;
+  border: 2px solid #6A994E; /* حاشیه سبز مشابه نام محصول */
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: "Vazir", sans-serif; /* فونت سایت */
+  color: #386641; /* رنگ مشابه نام محصول */
+  background-color: #f9f9f9; /* پس‌زمینه روشن */
+  text-align: right; /* راست‌چین کردن متن */
+  width: 100%;
+  max-width: 200px; /* حداکثر عرض */
+  transition: all 0.3s ease; /* انیمیشن تغییرات */
+}
+
+.sizeDropdown:focus {
+  border-color: #386641; /* تغییر رنگ حاشیه در فوکوس */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15); /* سایه در حالت فوکوس */
+}
+
+.quantityInput {
+  padding: 8px;
+  border: 2px solid #6A994E; /* حاشیه سبز مشابه نام محصول */
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: "Vazir", sans-serif; /* فونت سایت */
+  color: #386641; /* رنگ مشابه نام محصول */
+  background-color: #f9f9f9; /* پس‌زمینه روشن */
+  text-align: center; /* متن وسط‌چین */
+  width: 30%;
+  max-width: 100px; /* حداکثر عرض */
+  transition: all 0.3s ease; /* انیمیشن تغییرات */
+}
+
+.quantityInput:focus {
+  border-color: #386641; /* تغییر رنگ حاشیه در فوکوس */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15); /* سایه در حالت فوکوس */
+}
+
+/* ریسپانسیو */
 @media (max-width: 768px) {
-  .selectionBoxes {
-    align-items: center; /* وسط‌چین کردن باکس‌ها */
+  .colorOptions {
+    justify-content: flex-start; /* شروع از سمت راست */
+    gap: 8px; /* فاصله کمتر بین دایره‌ها */
   }
 
-  .box {
-    width: 100%; /* عرض کامل */
-    max-width: 150px; /* حداکثر عرض کاهش یافته */
+  .colorCircle {
+    width: 25px; /* اندازه دایره کوچک‌تر */
+    height: 25px;
   }
 
-  select {
-    font-size: 11px; /* کوچک‌تر کردن اندازه متن */
-    padding: 5px; /* کاهش padding */
-  }
-
-  label {
-    font-size: 11px; /* کوچک‌تر کردن اندازه لیبل */
+  .sizeDropdown,
+  .quantityInput {
+    font-size: 12px; /* کوچک‌تر کردن متن */
+    padding: 6px; /* کاهش فضای داخلی */
   }
 }
 
@@ -72,17 +108,15 @@ select option {
     align-items: center; /* وسط‌چین کردن باکس‌ها */
   }
 
-  .box {
-    width: 100%; /* عرض کامل */
-    max-width: 130px; /* حداکثر عرض در دستگاه‌های خیلی کوچک */
+  .colorCircle {
+    width: 20px; /* اندازه دایره کوچک‌تر */
+    height: 20px;
   }
 
-  select {
-    font-size: 10px; /* کوچک‌تر کردن متن */
-    padding: 4px; /* کاهش بیشتر padding */
-  }
-
-  label {
-    font-size: 10px; /* کوچک‌تر کردن اندازه لیبل */
+  .sizeDropdown,
+  .quantityInput {
+    font-size: 11px; /* کوچک‌تر کردن متن */
+    padding: 5px; /* کاهش padding */
+    max-width: 150px; /* کاهش حداکثر عرض */
   }
 }

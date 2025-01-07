@@ -1,5 +1,5 @@
 .card {
-  width: 50%;
+  width: 55%;
   height: 200px; /* ارتفاع ثابت برای کارت */
   display: flex;
   flex-direction: column; /* چیدمان عمودی */
