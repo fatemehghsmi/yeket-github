@@ -134,7 +134,7 @@ function Header() {
                     onClick={handleResultClick} // بستن باکس هنگام کلیک
                   >
                     <p>{result.title}</p>
-                    <p>{result.collection.title}</p>
+                    <p className={styles.categorytitle}>{result.collection.title}</p>
                   </Link>
                 ))
               ) : (

@@ -82,7 +82,9 @@
   flex-wrap: wrap; /* انتقال عناصر به خط بعدی فقط در صورت نیاز */
   padding: 0px 20px;
 }
-
+.categorytitle{
+  color: #6a994e;
+}
 /* دکمه دسته‌بندی */
 .categoryButton {
   background: none;

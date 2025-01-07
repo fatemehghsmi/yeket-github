@@ -233,7 +233,7 @@ function CardDetail() {
       </div>
       <div className={styles.noticeBox}>
         <p className={styles.noticeText}>
-          تمامی ارسال کالا ها با تیپاکس انجام میشود و هزینه پرداخت آن توسط لینک
+          تمامی ارسال کالا ها با <b>تیپاکس</b> انجام میشود و هزینه پرداخت آن توسط <b>لینک </b>
           به خریدار فرستاده می شود
         </p>
       </div>
