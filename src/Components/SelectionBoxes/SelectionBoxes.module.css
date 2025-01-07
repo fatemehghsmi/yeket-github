@@ -74,7 +74,7 @@
   color: #386641; /* رنگ مشابه نام محصول */
   background-color: #f9f9f9; /* پس‌زمینه روشن */
   text-align: center; /* متن وسط‌چین */
-  width: 30%;
+  width: 50%;
   max-width: 100px; /* حداکثر عرض */
   transition: all 0.3s ease; /* انیمیشن تغییرات */
 }
@@ -121,5 +121,8 @@
     font-size: 11px; /* کوچک‌تر کردن متن */
     padding: 5px; /* کاهش padding */
     max-width: 150px; /* کاهش حداکثر عرض */
+  }
+  .quantityInput{
+    width: 40%;
   }
 }

@@ -77,7 +77,7 @@ const SelectionBoxes = ({ productId }) => {
             )
           }
         >
-          <option value="">سایز را انتخاب کنید</option>
+          <option value="">انتخاب </option>
           {sizes.map((size) => (
             <option key={size.id} value={size.size}>
               {size.size}
