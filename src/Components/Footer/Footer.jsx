@@ -119,7 +119,8 @@ const Footer = () => {
       <div className={styles.link}>
         <p>
           طراحی و راه‌اندازی این سایت توسط تیم نرم‌افزاری{" "}
-          <a href="https://www.farda.team">farda.team</a> انجام شده است.
+          <a href="https://www.farda.team">&nbsp;farda.team&nbsp;</a> انجام شده
+          است.
         </p>
       </div>
     </footer>

@@ -40,6 +40,7 @@
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-left: 30px;
 }
 
 .backToTop button:hover {
