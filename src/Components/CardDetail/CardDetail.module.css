@@ -1,7 +1,6 @@
 .mother {
   height: fit-content;
   margin-bottom: 40vh;
-  width: 100%;
 }
 .container {
   display: flex;

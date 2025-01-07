@@ -157,6 +157,7 @@ function CardDetail() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+          arrows: false
         },
       },
     ],
@@ -171,7 +172,7 @@ function CardDetail() {
     <div className={styles.mother}>
       <div className={styles.container}>
         <div className={styles.images}>
-          <CustomSlider productId={id} />
+          <CustomSlider productId={id} /> 
         </div>
         <div className={styles.details}>
           {/* Breadcrumb */}
