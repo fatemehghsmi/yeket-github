@@ -105,9 +105,12 @@
 
 @media (max-width: 480px) {
   .selectionBoxes {
-    align-items: center; /* وسط‌چین کردن باکس‌ها */
+    align-items:start; /* وسط‌چین کردن باکس‌ها */
+   
   }
-
+  .labels{
+    font-size: 0.8rem;
+  }
   .colorCircle {
     width: 20px; /* اندازه دایره کوچک‌تر */
     height: 20px;

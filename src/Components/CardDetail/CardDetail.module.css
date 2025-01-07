@@ -2,6 +2,7 @@
   height: fit-content;
   margin-bottom: 40vh;
   width: 100%;
+  overflow-x: hidden;
 }
 .container {
   display: flex;
@@ -316,7 +317,7 @@
     padding: 5px 15px;
   }
   .details p {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   .details p span {
     font-size: 1rem;
@@ -369,7 +370,7 @@
     padding: 5px 15px;
   }
   .details p {
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
   .details p span {
     font-size: 0.9rem;
@@ -475,7 +476,7 @@
     padding: 5px 15px;
   }
   .details p {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
   .details p span {
     font-size: 0.7rem;
@@ -571,7 +572,7 @@
   }
 
   .details p {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
   .details p span {
     font-size: 0.7rem;
