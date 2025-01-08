@@ -3,7 +3,7 @@ import CardDetail from '../Components/CardDetail/CardDetail'
 
 function ProductDetail() {
   return (
-    <div style={{width:"95%"}}>
+    <div>
         <CardDetail/>
     </div>
   )
