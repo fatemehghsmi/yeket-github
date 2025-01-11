@@ -1,109 +1,114 @@
 @font-face {
-    font-family: "Lalezar";
-    src: local("Lalezar"), url(./Fonts/Lalezar.ttf) format("truetype");
-  }
-  @font-face {
-    font-family: "B-NAZANIN";
-    src: local("B-NAZANIN"), url(./Fonts/B-NAZANIN.ttf) format("truetype");
-  }
-  
-  .container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .title {
-    font-family: "Lalezar";
-    color: #386641;
-    font-size: 1.8rem;
-    font-weight: 400;
-    text-align: center;
-    cursor: pointer;
-  }
-  .morecontainer {
-    width: 80%;
-    height: fit-content;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0%;
-    padding: 0%;
-  }
-  .product {
-    width: 25%;
-    height: fit-content;
-    margin: 0;
-    padding: 0;
-  }
-  .sidebar {
-    width: 20%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    direction: rtl;
-    text-align: right;
-  }
-  .sidebar h4 {
-    text-align: right;
-    color: #6a994e;
-    background-color: #f2e8cf;
-    width: max-content;
-    font-size: 1.5rem;
-    /* left: 80%; */
-    position: relative;
-    padding: 0% 2%;
-    margin: 5px 0;
-    border-radius: 10px;
-    /* font-family: "B-NAZANIN"; */
-  }
-  .sidebar h3 {
-    text-align: center;
-    color: #6a994e;
-    font-size: 1.2rem;
-  }
-  .categoryLink:hover {
-    /* color: #f0b653; */
-    /* font-size: 1.2rem; اندازه متن */
-    color: #6a994e; /* رنگ متن */
-    font-weight: bold; /* ضخیم‌تر کردن متن */
-    background-color: #f2e8cf; /* رنگ پس‌زمینه */
-    padding: 0px 2px; /* فاصله داخلی بالا، پایین و کناره‌ها */
-    border-radius: 10px; /* گرد کردن گوشه‌ها */
-    text-align: center; /* متن در وسط */
-    display: inline-block; /* متن به اندازه محتوا باشد */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: right;
-    direction: rtl;
-  }
-  .sortcontainer {
-    width: 100%;
+  font-family: "Lalezar";
+  src: local("Lalezar"), url(./Fonts/Lalezar.ttf) format("truetype");
+}
+@font-face {
+  font-family: "B-NAZANIN";
+  src: local("B-NAZANIN"), url(./Fonts/B-NAZANIN.ttf) format("truetype");
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.title {
+  font-family: "Lalezar";
+  color: #386641;
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+}
+.morecontainer {
+  width: 80%;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0%;
+  padding: 0%;
+}
+.product {
+  width: 25%;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+}
+.sidebar {
+  width: 20%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  direction: rtl;
+}
+.sidebar h4 {
+  text-align: right;
+  color: #6a994e;
+  background-color: #f2e8cf;
+  width: max-content;
+  font-size: 1.5rem;
+  /* left: 80%; */
+  position: relative;
+  padding: 0% 2%;
+  margin: 5px 0px;
+  border-radius: 10px;
+  /* font-family: "B-NAZANIN"; */
+  margin-bottom: 10px;
+}
+.sidebar h3 {
+  text-align: center;
+  color: #6a994e;
+  font-size: 1.2rem;
+}
+.categoryLink{
+  margin: 10px 0px;
+}
+.categoryLink:hover {
+  color: #6a994e; /* رنگ متن */
+  font-weight: bold; /* ضخیم‌تر کردن متن */
+  background-color: #f2e8cf; /* رنگ پس‌زمینه */
+  padding: 15px 0px 0px 10px; /* فاصله داخلی بالا، پایین و کناره‌ها */
+  border-radius: 10px; /* گرد کردن گوشه‌ها */
+  text-align: center; /* متن در وسط افقی */
+  display: inline-block; /* متن به اندازه محتوا باشد */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* سایه ملایم */
+  line-height: 1.5; /* فاصله خط برای وسط‌چین شدن عمودی متن */
+  height: auto; /* ارتفاع به محتوا وابسته باشد */
+  vertical-align: middle; /* متن را عموداً در وسط قرار می‌دهد */
+  direction: rtl; /* جهت متن */
+}
+
+
+.sortcontainer {
+  width: 100%;
   height: max-content;
   background-color: #f2e8cf;
   margin: 20px 0%;
   direction: rtl;
   text-align: right;
-
-  }
-  .sortcontainer p {
-    margin: 20%;
+}
+.sortcontainer p {
+  margin: 20%;
   cursor: pointer;
   direction: rtl;
   text-align: right;
-  }
-  .sortcontainer p:hover{
-    color: #f0b653;
-  }
-  .sidebar p {
-    color: #6a994e;
-    text-align: right;
-    line-height: 10%;
-    cursor: pointer;
-    /* font-family: "B-NAZANIN"; */
-    /* font-weight: 540; */
-    font-size: 1.1rem;
-  }
-  
-  /* Responsive */
+}
+.sortcontainer p:hover{
+  color: #f0b653;
+}
+.sidebar p {
+  color: #6a994e;
+  text-align: right;
+  line-height: 10%;
+  cursor: pointer;
+  /* font-family: "B-NAZANIN"; */
+  /* font-weight: 540; */
+  font-size: 1.1rem;
+}
+
+/* Responsive */
 @media (max-width: 900px) {
   .product {
     width: 45%;
@@ -111,7 +116,7 @@
   .title {
     font-size: 1rem;
   }
-  .sidebar{
+  .sidebar {
     width: 30%;
   }
   .sidebar p {
@@ -120,7 +125,7 @@
   .sidebar h4 {
     font-size: 1.2rem;
   }
-  .sidebar h3{
+  .sidebar h3 {
     font-size: 1rem;
   }
 }
@@ -144,26 +149,30 @@
   .sidebar h4 {
     font-size: 1rem;
   }
-  .sidebar h3{
+  .sidebar h3 {
     font-size: 0.8rem;
   }
+  .categoryLink{
+    margin: 1px 0px;
+  }
+ 
 }
 @media (max-width: 400px) {
   .title {
     font-size: 1rem;
   }
   .morecontainer {
-    width: 80%;
+    width: 70%;
   }
   .sidebar {
     width: 30%;
   }
-.sortcontainer p{
- margin: 10px;
-}
-.sidebar h3{
-  font-size: 0.6rem;
-}
+  .sortcontainer p {
+    margin: 20px;
+  }
+  .sidebar h3 {
+    font-size: 0.6rem;
+  }
   .sidebar p {
     font-size: 0.5rem;
   }

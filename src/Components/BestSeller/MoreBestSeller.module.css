@@ -52,29 +52,35 @@
   /* left: 80%; */
   position: relative;
   padding: 0% 2%;
-  margin: 5px 0;
+  margin: 5px 0px;
   border-radius: 10px;
   /* font-family: "B-NAZANIN"; */
+  margin-bottom: 10px;
 }
 .sidebar h3 {
   text-align: center;
   color: #6a994e;
   font-size: 1.2rem;
 }
+.categoryLink{
+  margin: 10px 0px;
+}
 .categoryLink:hover {
-  /* color: #f0b653; */
-  /* font-size: 1.2rem; اندازه متن */
   color: #6a994e; /* رنگ متن */
   font-weight: bold; /* ضخیم‌تر کردن متن */
   background-color: #f2e8cf; /* رنگ پس‌زمینه */
-  padding: 0px 2px; /* فاصله داخلی بالا، پایین و کناره‌ها */
+  padding: 15px 0px 0px 10px; /* فاصله داخلی بالا، پایین و کناره‌ها */
   border-radius: 10px; /* گرد کردن گوشه‌ها */
-  text-align: center; /* متن در وسط */
+  text-align: center; /* متن در وسط افقی */
   display: inline-block; /* متن به اندازه محتوا باشد */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: right;
-  direction: rtl;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* سایه ملایم */
+  line-height: 1.5; /* فاصله خط برای وسط‌چین شدن عمودی متن */
+  height: auto; /* ارتفاع به محتوا وابسته باشد */
+  vertical-align: middle; /* متن را عموداً در وسط قرار می‌دهد */
+  direction: rtl; /* جهت متن */
 }
+
+
 .sortcontainer {
   width: 100%;
   height: max-content;
@@ -146,19 +152,23 @@
   .sidebar h3 {
     font-size: 0.8rem;
   }
+  .categoryLink{
+    margin: 1px 0px;
+  }
+ 
 }
 @media (max-width: 400px) {
   .title {
     font-size: 1rem;
   }
   .morecontainer {
-    width: 80%;
+    width: 70%;
   }
   .sidebar {
     width: 30%;
   }
   .sortcontainer p {
-    margin: 10px;
+    margin: 20px;
   }
   .sidebar h3 {
     font-size: 0.6rem;
