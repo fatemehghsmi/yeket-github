@@ -31,6 +31,7 @@
   overflow: hidden; /* حذف متن اضافی */
   text-overflow: ellipsis; /* نمایش ... برای متن طولانی */
   max-width: 90%; /* محدود کردن عرض متن */
+  direction: rtl;
 }
 
 .price {
