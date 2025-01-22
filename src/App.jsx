@@ -25,6 +25,7 @@ import ScrollToTop from "./Components/ScrollToTop/ScrollToTop"; // مسیر فا
 import styles from "./App.module.css";
 import CategoryPage from "./Pages/CategoryPage";
 import SubCategoryPage from "./Pages/SubCategoryPage";
+import Customer from "./Pages/Customer";
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
           <Route path="/sendorder" element={<SendOrder />} />
           <Route path="/termsofsale" element={<TermsOfSale />} />
           <Route path="/vendor/:vendor" element={<VendorProducts />} />
+          <Route path="/Customer" element={<Customer />} />
         </Routes>
       </div>
       <Footer />

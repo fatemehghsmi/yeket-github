@@ -1,0 +1,123 @@
+.firstContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .selectionPart {
+    width: 65%;
+    margin: 50px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 50px;
+  }
+  
+  .hami {
+    width: 30%;
+    border: solid 4px #6a994e;
+    border-radius: 20px;
+    padding: 60px;
+    background-color: unset;
+    color: #6a994e;
+    font-size: 2rem;
+    font-weight: 600;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  
+  .vendor {
+    width: 30%;
+    border: solid 4px #a7c957;
+    border-radius: 20px;
+    padding: 38px;
+    background-color: unset;
+    color: #a7c957;
+    font-size: 2rem;
+    font-weight: 600;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  
+  .customer {
+    width: 30%;
+    border-radius: 20px;
+    border: none;
+    padding: 40px;
+    background-color: #f0b653;
+    color: #f8f8f8;
+    font-size: 2rem;
+    font-weight: 600;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  
+  .information {
+    width: 25%;
+    height: fit-content;
+    border: solid 1px #a8a7a7;
+    border-radius: 20px;
+    display: flex;
+    margin-top: 50px;
+    margin-left: 30px;
+    flex-direction: column;
+    gap: 15px;  /* فاصله بین آیتم‌ها */
+    padding: 20px;
+    direction: rtl;
+  }
+  
+  .infoItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  /* این باعث می‌شود که دکمه و عنوان عمودی هم‌تراز شوند */
+    width: 100%;
+    gap: 10px;  /* فاصله بین دکمه‌ها */
+  }
+  
+  .infoTitle {
+    color: #386641;
+    font-size: 1rem;
+    flex: 1;
+    padding-top: 15px;
+  }
+  
+  .infoButton {
+    background-color: #A7C957;
+    color: #f8f8f8;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 10px; /* اندازه دکمه */
+    cursor: pointer;
+    width: 100%; /* این باعث می‌شود که دکمه‌ها عرض کامل را بگیرند */
+  }
+  
+  .infoButton:hover {
+    background-color: #8aa846; /* تغییر رنگ دکمه هنگام hover */
+  }
+  .infoItem button {
+    width: calc(40% - 10px); /* این باعث می‌شود که دکمه‌ها در عرض نصف فضا قرار گیرند */
+  }
+
+  /* second container */
+
+  .ordersSelection {
+    width: 65%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 150px;
+    border: 1px solid #a8a7a7;
+    border-radius: 20px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+  }
+  .orderStateBtn{
+    background-color: unset;
+    border: none;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  
+  
