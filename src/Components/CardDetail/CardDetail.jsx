@@ -8,14 +8,13 @@ import { useParams, Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoShareSocialOutline } from "react-icons/io5";
-
 import { GoHeart } from "react-icons/go";
 import { GoHeartFill } from "react-icons/go";
 import MiniCard from "../Card/MiniCard";
 import CommentsBox from "../CommentsBox/CommentsBox";
 import CustomSlider from "../Slider/CustomSlider";
 import SelectionBoxes from "../SelectionBoxes/SelectionBoxes";
-
+import { useCart } from "../../context/CartContext"; // ایمپورت useCart
 import styles from "./CardDetail.module.css";
 
 function CardDetail() {
@@ -26,8 +25,9 @@ function CardDetail() {
 
   const [like, setLike] = useState(false);
   const { id } = useParams();
+  const { addToCart } = useCart(); // استفاده از useCart
 
-  const commentsRef = useRef(null); // مرجع برای بخش نظرات
+  const commentsRef = useRef(null);
 
   const likeHandeler = () => {
     setLike(!like);
@@ -56,7 +56,7 @@ function CardDetail() {
   const [images, setImages] = useState([]);
   const [colors, setColors] = useState([]);
   const [product, setProduct] = useState({});
-  const [breadcrumb, setBreadcrumb] = useState(""); // برای ذخیره عنوان breadcrumb
+  const [breadcrumb, setBreadcrumb] = useState("");
   const [similarproducts, setSimilarproducts] = useState([]);
 
   useEffect(() => {
@@ -72,7 +72,6 @@ function CardDetail() {
     setColors(response.data.colors);
     setImages(response.data.images);
 
-    // ذخیره عنوان مجموعه برای breadcrumb
     if (response.data.collection && response.data.collection.title) {
       setBreadcrumb(response.data.collection.title);
     }
@@ -83,6 +82,56 @@ function CardDetail() {
     setSimilarproducts(similarRespons.data);
   };
 
+  // تابع اسکرول به بخش نظرات
+  const scrollToComments = () => {
+    commentsRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // تابع برای افزودن محصول به سبد خرید
+  const handleAddToCart = () => {
+    addToCart(product); // افزودن محصول به سبد خرید
+    alert("محصول به سبد خرید اضافه شد!");
+  };
+
+  // تنظیمات Slider
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    arrows: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 400,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  // کامپوننت‌های Arrow برای Slider
   function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -125,56 +174,13 @@ function CardDetail() {
     );
   }
 
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 3000,
-    pauseOnHover: true,
-    arrows: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1000,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 400,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
-  // تابع اسکرول به بخش نظرات
-  const scrollToComments = () => {
-    commentsRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div className={styles.mother}>
       <div className={styles.container}>
         <div className={styles.images}>
-          <CustomSlider productId={id} /> 
+          <CustomSlider productId={id} />
         </div>
         <div className={styles.details}>
-          {/* Breadcrumb */}
           {product.collection && (
             <div className={styles.breadcrumb}>
               <span>دسته‌بندی / </span>
@@ -203,7 +209,6 @@ function CardDetail() {
             <h3 className={styles.descriptionTitle}>توضیحات محصول</h3>
             <p className={styles.descriptionText}>{product.description}</p>
           </div>
-          {/* باکس اطلاعیه غیر قابل مرجوعی */}
           {product.collection &&
             product.collection.title === "لوازم آرایشی" && (
               <div className={styles.returnNoticeWrapper}>
@@ -221,7 +226,9 @@ function CardDetail() {
         <button className={styles.pricebtn}>
           {formatNumber(product.unit_price)}&nbsp; تومان
         </button>
-        <button className={styles.buybtn}>افزودن به سبد خرید</button>
+        <button className={styles.buybtn} onClick={handleAddToCart}>
+          افزودن به سبد خرید
+        </button>
         <span className={styles.icon} onClick={likeHandeler}>
           {like ? <GoHeartFill size={33} /> : <GoHeart size={33} />}
         </span>

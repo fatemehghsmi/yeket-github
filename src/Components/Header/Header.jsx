@@ -8,28 +8,32 @@ import CategoryModal from "./CategoryModal";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { FadeLoader } from "react-spinners";
+import { useCart } from "../../context/CartContext"; // ایمپورت useCart
 
 function Header() {
   const [category, setCategory] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(""); // مقدار جستجو
-  const [allProducts, setAllProducts] = useState([]); // همه محصولات
-  const [searchResults, setSearchResults] = useState([]); // نتایج جستجو
-  const [showResults, setShowResults] = useState(false); // نمایش یا مخفی کردن نتایج
-  const [loadingSearch, setLoadingSearch] = useState(false); // وضعیت لودینگ
-  const resultsRef = useRef(null); // مرجع برای کادر نتایج جستجو
+  const [searchTerm, setSearchTerm] = useState("");
+  const [allProducts, setAllProducts] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+  const [loadingSearch, setLoadingSearch] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  const resultsRef = useRef(null);
+  const cartRef = useRef(null);
+
+  const { cart, removeFromCart } = useCart(); // استفاده از useCart
 
   const showCategoryHandeler = () => {
     setCategory(true);
   };
 
-  // فراخوانی تمامی محصولات از API در اولین بارگیری
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
         const response = await axios.get(
           "https://yeket.liara.run/api/store/products/"
         );
-        setAllProducts(response.data); // ذخیره تمامی محصولات
+        setAllProducts(response.data);
       } catch (error) {
         console.error("خطا در دریافت اطلاعات محصولات:", error);
       }
@@ -38,9 +42,8 @@ function Header() {
     fetchAllProducts();
   }, []);
 
-  // فیلتر کردن محصولات بر اساس عبارت جستجو
   const handleInputChange = async (e) => {
-    const term = e.target.value.trim(); // حذف فاصله‌های اضافی
+    const term = e.target.value.trim();
     setSearchTerm(term);
 
     if (term === "") {
@@ -50,13 +53,13 @@ function Header() {
       setLoadingSearch(true);
       setShowResults(true);
 
-      const filteredResults = allProducts.filter(
-        (product) => product.title.toLowerCase().includes(term.toLowerCase()) // جستجو بر اساس عنوان محصول
+      const filteredResults = allProducts.filter((product) =>
+        product.title.toLowerCase().includes(term.toLowerCase())
       );
       setTimeout(() => {
         setSearchResults(filteredResults);
         setLoadingSearch(false);
-      }, 500); // شبیه‌سازی تأخیر برای لودینگ
+      }, 500);
     }
   };
 
@@ -65,12 +68,15 @@ function Header() {
     setShowResults(false);
   };
 
-  // بستن نتایج جستجو با کلیک بیرون از کادر
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (resultsRef.current && !resultsRef.current.contains(event.target)) {
-        setShowResults(false); // بستن کادر نتایج
-        setSearchTerm(""); // پاک کردن مقدار input
+        setShowResults(false);
+        setSearchTerm("");
+      }
+
+      if (cartRef.current && !cartRef.current.contains(event.target)) {
+        setShowCart(false);
       }
     };
 
@@ -79,6 +85,11 @@ function Header() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const toggleCart = () => {
+    console.log("Toggle Cart:", !showCart); // بررسی تغییر state
+    setShowCart(!showCart);
+  };
 
   return (
     <header id="header" className={styles.headerContainer}>
@@ -107,21 +118,20 @@ function Header() {
             placeholder="جستجو کنید..."
           />
 
-          {/* نمایش نتایج جستجو */}
           {showResults && (
             <div
               className={`${styles.searchResults} ${
                 searchResults.length >= 4 ? styles.scrollable : ""
               }`}
-              ref={resultsRef} // اضافه کردن مرجع به کادر نتایج
+              ref={resultsRef}
             >
               {loadingSearch ? (
                 <div className={styles.loadingSearch}>
                   <FadeLoader
-                    color="#386641" // رنگ سبز
-                    height={6} // ارتفاع کوچک‌تر
-                    width={2} // عرض باریک‌تر
-                    radius={1} // گردی
+                    color="#386641"
+                    height={6}
+                    width={2}
+                    radius={1}
                     margin={2}
                   />
                 </div>
@@ -131,7 +141,7 @@ function Header() {
                     to={`/product/${result.id}`}
                     key={result.id}
                     className={styles.resultItem}
-                    onClick={handleResultClick} // بستن باکس هنگام کلیک
+                    onClick={handleResultClick}
                   >
                     <p>{result.title}</p>
                     <p className={styles.categorytitle}>{result.collection.title}</p>
@@ -147,9 +157,32 @@ function Header() {
         </div>
 
         <div className={styles.iconsWrapper}>
-          <FiShoppingCart className={styles.icon} />
+          <FiShoppingCart
+            className={styles.icon}
+            onClick={toggleCart}
+          />
           <GoHeartFill className={styles.icon} />
         </div>
+
+        {showCart && (
+          <div className={styles.cartDropdown} ref={cartRef}>
+            <h3>سبد خرید</h3>
+            <ul>
+              {cart.length === 0 ? (
+                <p>سبد خرید شما خالی است.</p>
+              ) : (
+                cart.map((product) => (
+                  <li key={product.id}>
+                    <p>{product.title}</p>
+                    <button onClick={() => removeFromCart(product.id)}>
+                      حذف
+                    </button>
+                  </li>
+                ))
+              )}
+            </ul>
+          </div>
+        )}
       </div>
       {!!category && (
         <CategoryModal category={category} setCategory={setCategory} />
