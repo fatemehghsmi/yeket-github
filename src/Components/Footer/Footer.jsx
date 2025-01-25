@@ -6,9 +6,14 @@ import { FaInstagram } from "react-icons/fa";
 import { LuPhone } from "react-icons/lu";
 import { FaArrowUpLong } from "react-icons/fa6";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const location = useLocation();
+
+  // اگر در صفحه لاگین هستیم، فوتر نمایش داده نشود
+  if (location.pathname === "/login") return null;
+
   return (
     <footer className={styles.footer} dir="rtl">
       {/* بخش بالایی */}

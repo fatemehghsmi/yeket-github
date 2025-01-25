@@ -1,0 +1,304 @@
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  direction: rtl;
+}
+
+.loginBox {
+  padding: 40px;
+  border: 1px solid #a7c957;
+  width: 40%;
+  height: 80%;
+  text-align: center;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.logoLink {
+  display: block;
+  margin-bottom: 0px;
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+}
+
+/* استایل‌های پیش‌فرض برای welcome */
+.welcome {
+  color: #386641;
+  font-size: 30px;
+  text-align: center;
+  white-space: nowrap;
+  display: inline;
+  margin: 20px; /* مقدار پیش‌فرض */
+}
+
+/* استایل‌های خاص برای زمانی که isCodeSent برابر true هست */
+.loginBox.codeSent .welcome {
+  margin: 0; /* صفر کردن margin */
+  padding: 0; /* صفر کردن padding */
+}
+
+.boldLink {
+  font-weight: bold;
+  color: #386641;
+  text-decoration: none;
+  font-size: 35px;
+}
+
+.boldLink span {
+  font-weight: bold;
+}
+
+.welcome,
+.boldLink {
+  display: inline-block;
+}
+
+/* استایل‌های پیش‌فرض برای phoneNumberText */
+.phoneNumberText {
+  color: #386641;
+  font-size: 16px;
+  margin-bottom: 20px; /* مقدار پیش‌فرض */
+}
+
+/* استایل‌های خاص برای زمانی که isCodeSent برابر true هست */
+.loginBox.codeSent .phoneNumberText {
+  margin: 0; /* صفر کردن margin */
+  padding: 0; /* صفر کردن padding */
+}
+
+/* استایل‌های پیش‌فرض برای phoneInput و inputField */
+.phoneInput,
+.inputField {
+  width: 93%;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 20px;
+  border: 2px solid #386641;
+  font-size: 18px;
+  color: #386641;
+  background-color: transparent !important; /* پس‌زمینه حذف شد */
+  outline: none !important; /* حذف outline هنگام فوکوس */
+  appearance: none !important; /* غیرفعال کردن استایل پیش‌فرض مرورگر */
+  -webkit-appearance: none !important; /* برای مرورگرهای مبتنی بر WebKit */
+  background-clip: padding-box !important; /* جلوگیری از پس‌زمینه ناخواسته */
+  font-family: Vazir;
+  src: url(../Fonts/Vazir.ttf);
+}
+
+/* استایل‌های خاص برای زمانی که isCodeSent برابر true هست */
+.loginBox.codeSent .phoneInput,
+.loginBox.codeSent .inputField {
+  width: 93%;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 20px;
+  border: 2px solid #386641;
+  font-size: 18px;
+  color: #386641;
+  background-color: transparent !important; /* پس‌زمینه حذف شد */
+  outline: none !important; /* حذف outline هنگام فوکوس */
+  appearance: none !important; /* غیرفعال کردن استایل پیش‌فرض مرورگر */
+  -webkit-appearance: none !important; /* برای مرورگرهای مبتنی بر WebKit */
+  background-clip: padding-box !important; /* جلوگیری از پس‌زمینه ناخواسته */
+  font-family: Vazir;
+  src: url(../Fonts/Vazir.ttf);
+}
+
+/* حذف هرگونه تغییر رنگ پس‌زمینه هنگام hover یا focus */
+.phoneInput:hover,
+.inputField:hover,
+.phoneInput:focus,
+.inputField:focus {
+  background-color: transparent !important; /* پس‌زمینه بدون تغییر */
+}
+
+/* جلوگیری از تغییر رنگ پس‌زمینه در حالت autofill */
+.phoneInput:-webkit-autofill,
+.inputField:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important; /* پس‌زمینه بدون تغییر */
+  -webkit-text-fill-color: #386641 !important; /* رنگ متن بدون تغییر */
+}
+
+/* استایل‌های جدید برای چک‌باکس */
+/* استایل‌های جدید برای چک‌باکس */
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #386641; /* رنگ حاشیه سبز */
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* انیمیشن */
+}
+
+.checkbox:checked {
+  background-color: #f0b653; /* رنگ وقتی انتخاب شده است (نارنجی) */
+  border-color: #f0b653;
+}
+
+.checkboxLabel {
+  font-size: 16px;
+  color: #386641;
+  cursor: pointer;
+}
+
+.checkbox:hover,
+.checkboxLabel:hover {
+  cursor: pointer;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 15px;
+  background-color: #a7c957;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.submitBtn:hover {
+  background-color: #f0b653;
+}
+
+.addPhoneNumber {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.resendContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.resendBtn {
+  padding: 10px;
+  background-color: #a7c957;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.resendBtn:disabled {
+  background-color: #f2e8cf;
+  cursor: not-allowed;
+}
+
+.timer {
+  font-size: 16px;
+  color: #386641;
+}
+
+/* استایل جدید برای editIcon */
+.editIconContainer {
+  position: relative;
+  width: 100%;
+}
+
+.editIcon {
+  cursor: pointer;
+  font-size: 30px;
+  position: absolute;
+  left: 20px; /* فاصله از سمت چپ */
+  top: 60%; /* وسط عمودی */
+  transform: translateY(-50%); /* تنظیم موقعیت عمودی */
+  color: #386641;
+}
+
+/* رسپانسیو برای تبلت (عرض بین 768px تا 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .loginBox {
+    padding: 30px;
+    width: 70%; /* عرض بیشتر برای تبلت */
+  }
+
+  .welcome {
+    font-size: 28px; /* افزایش اندازه فونت برای تبلت */
+  }
+
+  .phoneNumberText {
+    font-size: 16px; /* افزایش اندازه فونت برای تبلت */
+  }
+
+  .phoneInput,
+  .inputField {
+    font-size: 18px; /* افزایش اندازه فونت برای تبلت */
+  }
+
+  .submitBtn {
+    font-size: 18px; /* افزایش اندازه فونت برای تبلت */
+  }
+
+  .resendBtn {
+    font-size: 16px; /* افزایش اندازه فونت برای تبلت */
+  }
+
+  .timer {
+    font-size: 16px; /* افزایش اندازه فونت برای تبلت */
+  }
+
+  .editIcon {
+    font-size: 28px; /* افزایش اندازه آیکون برای تبلت */
+  }
+}
+
+/* رسپانسیو برای موبایل (عرض کمتر از 768px) */
+@media (max-width: 767px) {
+  .loginBox {
+    padding: 15px;
+    width: 90%; /* عرض بیشتر برای موبایل */
+  }
+
+  .welcome {
+    font-size: 20px; /* کاهش بیشتر اندازه فونت */
+  }
+
+  .phoneNumberText {
+    font-size: 12px; /* کاهش بیشتر اندازه فونت */
+  }
+
+  .phoneInput,
+  .inputField {
+    font-size: 14px; /* کاهش بیشتر اندازه فونت */
+  }
+
+  .submitBtn {
+    font-size: 14px; /* کاهش بیشتر اندازه فونت */
+  }
+
+  .resendBtn {
+    font-size: 12px; /* کاهش بیشتر اندازه فونت */
+  }
+
+  .timer {
+    font-size: 12px; /* کاهش بیشتر اندازه فونت */
+  }
+
+  .editIcon {
+    font-size: 20px; /* کاهش بیشتر اندازه آیکون */
+  }
+}

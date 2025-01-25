@@ -25,6 +25,7 @@ import ScrollToTop from "./Components/ScrollToTop/ScrollToTop"; // مسیر فا
 import styles from "./App.module.css";
 import CategoryPage from "./Pages/CategoryPage";
 import SubCategoryPage from "./Pages/SubCategoryPage";
+import LoginSignupPage from "./Pages/Login/LoginSignupPage";
 
 function App() {
   return (
@@ -42,6 +43,8 @@ function App() {
             element={<SubCategoryPage />}
           />
           <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginSignupPage />} />{" "}
+          {/* افزودن صفحه لاگین */}
           <Route path="/aboutyeket" element={<AboutYeket />} />
           <Route path="/contactyeket" element={<ContactYeket />} />
           <Route
