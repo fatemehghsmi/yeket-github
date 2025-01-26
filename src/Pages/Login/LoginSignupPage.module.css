@@ -38,6 +38,15 @@
   margin: 20px; /* مقدار پیش‌فرض */
 }
 
+.welcome.loggedIn .loginBox {
+  margin: 20px; /* صفر کردن margin */
+  padding: 20px; /* صفر کردن padding */
+}
+/* وقتی isLoggedIn برابر true است */
+.loginBox.loggedIn .welcome {
+  margin: 20px; /* بازگشت به حالت اولیه margin */
+  padding: 20px; /* بازگشت به حالت اولیه padding */
+}
 /* استایل‌های خاص برای زمانی که isCodeSent برابر true هست */
 .loginBox.codeSent .welcome {
   margin: 0; /* صفر کردن margin */
@@ -71,6 +80,11 @@
 .loginBox.codeSent .phoneNumberText {
   margin: 0; /* صفر کردن margin */
   padding: 0; /* صفر کردن padding */
+}
+
+.loginBox.loggedIn .successMessage {
+  margin: 0px; /* صفر کردن margin */
+  padding: 0px; /* صفر کردن padding */
 }
 
 /* استایل‌های پیش‌فرض برای phoneInput و inputField */
@@ -126,7 +140,6 @@
   -webkit-text-fill-color: #386641 !important; /* رنگ متن بدون تغییر */
 }
 
-/* استایل‌های جدید برای چک‌باکس */
 /* استایل‌های جدید برای چک‌باکس */
 .checkboxContainer {
   display: flex;
@@ -229,6 +242,57 @@
   color: #386641;
 }
 
+.successMessage {
+  text-align: center; /* متن居中 */
+  margin-top: 20px; /* مارجین بالا */
+}
+
+.successMessage p {
+  color: #386641; /* رنگ متن */
+  font-size: 18px; /* اندازه فونت */
+  margin-bottom: 30px; /* مارجین پایین */
+  line-height: 1.6; /* فاصله بین خطوط */
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column; /* چیدمان عمودی */
+  gap: 15px; /* فاصله بین دکمه‌ها */
+  align-items: center; /*居中 کردن دکمه‌ها */
+}
+
+.continueButton,
+.completeInfoButton {
+  width: 100%;
+  padding: 15px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.continueButton {
+  background-color: #a7c957; /* رنگ دکمه */
+  color: white;
+}
+
+.continueButton:hover {
+  background-color: #95b34a; /* رنگ هاور */
+}
+
+.completeInfoButton {
+  background-color: transparent; /* بدون پس‌زمینه */
+  color: #386641; /* رنگ متن */
+  border: none; /* حذف حاشیه */
+  padding: 0; /* حذف پدینگ */
+  font-size: 20px; /* اندازه فونت */
+  cursor: pointer; /* نشانگر موس به شکل دست */
+  transition: color 0.3s ease; /* افکت hover */
+  font-weight: bold;
+}
+
 /* رسپانسیو برای تبلت (عرض بین 768px تا 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .loginBox {
@@ -252,53 +316,42 @@
   .submitBtn {
     font-size: 18px; /* افزایش اندازه فونت برای تبلت */
   }
-
-  .resendBtn {
-    font-size: 16px; /* افزایش اندازه فونت برای تبلت */
-  }
-
-  .timer {
-    font-size: 16px; /* افزایش اندازه فونت برای تبلت */
-  }
-
-  .editIcon {
-    font-size: 28px; /* افزایش اندازه آیکون برای تبلت */
-  }
 }
 
 /* رسپانسیو برای موبایل (عرض کمتر از 768px) */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .loginBox {
-    padding: 15px;
+    padding: 20px;
     width: 90%; /* عرض بیشتر برای موبایل */
   }
 
+  .logo {
+    width: 80px; /* کاهش اندازه لوگو برای موبایل */
+  }
+
   .welcome {
-    font-size: 20px; /* کاهش بیشتر اندازه فونت */
+    font-size: 24px; /* کاهش اندازه فونت برای موبایل */
   }
 
   .phoneNumberText {
-    font-size: 12px; /* کاهش بیشتر اندازه فونت */
+    font-size: 14px; /* کاهش اندازه فونت برای موبایل */
   }
 
   .phoneInput,
   .inputField {
-    font-size: 14px; /* کاهش بیشتر اندازه فونت */
+    font-size: 16px; /* کاهش اندازه فونت برای موبایل */
+    width: 85%;
   }
 
   .submitBtn {
-    font-size: 14px; /* کاهش بیشتر اندازه فونت */
+    font-size: 16px; /* کاهش اندازه فونت برای موبایل */
   }
 
-  .resendBtn {
-    font-size: 12px; /* کاهش بیشتر اندازه فونت */
+  .boldLink {
+    font-size: 28px; /* کاهش اندازه فونت برای موبایل */
   }
 
-  .timer {
-    font-size: 12px; /* کاهش بیشتر اندازه فونت */
-  }
-
-  .editIcon {
-    font-size: 20px; /* کاهش بیشتر اندازه آیکون */
+  .checkboxLabel {
+    font-size: 14px; /* کاهش اندازه فونت برای موبایل */
   }
 }

@@ -21,6 +21,7 @@ import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import VendorProducts from "./Pages/VendorProducts";
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop"; // مسیر فایل ScrollToTop
+import PersonalInformation from "./Pages/PersonalInformation/PersonalInformation";
 
 import styles from "./App.module.css";
 import CategoryPage from "./Pages/CategoryPage";
@@ -34,6 +35,7 @@ function App() {
         <Header />
         <ScrollToTop />
         <Routes>
+          <Route path="/info" element={<PersonalInformation />} />
           <Route path="/newests" element={<Newests />} />
           <Route path="/bestsellers" element={<BestSellers />} />
           <Route path="/product/:id" element={<ProductDetail />} />
