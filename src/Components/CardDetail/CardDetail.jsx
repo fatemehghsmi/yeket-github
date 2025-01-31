@@ -59,6 +59,10 @@ function CardDetail() {
   const [breadcrumb, setBreadcrumb] = useState("");
   const [similarproducts, setSimilarproducts] = useState([]);
 
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+
   useEffect(() => {
     getData();
   }, [id]);
@@ -89,7 +93,22 @@ function CardDetail() {
 
   // تابع برای افزودن محصول به سبد خرید
   const handleAddToCart = () => {
-    addToCart(product); // افزودن محصول به سبد خرید
+    if (!selectedSize || !selectedColor) {
+      alert("لطفاً رنگ و سایز را انتخاب کنید.");
+      return;
+    }
+
+    const productWithSelection = {
+      id: product.id,
+      title: product.title,
+      price: product.unit_price,
+      image: product.images[0], // فرض بر اینکه تصاویر یک آرایه هستند
+      selectedSize,
+      selectedColor,
+      selectedQuantity,
+    };
+
+    addToCart(productWithSelection);
     alert("محصول به سبد خرید اضافه شد!");
   };
 
@@ -204,7 +223,12 @@ function CardDetail() {
             نظرات: <span>4 نظر مثبت </span>
             <span style={{ color: "red" }}>4 نظر منفی</span>
           </p>
-          <SelectionBoxes productId={id} />
+          <SelectionBoxes
+            productId={id}
+            onColorChange={setSelectedColor}
+            onSizeChange={setSelectedSize}
+            onQuantityChange={setSelectedQuantity}
+          />
           <div className={styles.descriptionBox}>
             <h3 className={styles.descriptionTitle}>توضیحات محصول</h3>
             <p className={styles.descriptionText}>{product.description}</p>
@@ -240,7 +264,8 @@ function CardDetail() {
       </div>
       <div className={styles.noticeBox}>
         <p className={styles.noticeText}>
-          تمامی ارسال کالا ها با <b>تیپاکس</b> انجام میشود و هزینه پرداخت آن توسط <b>لینک </b>
+          تمامی ارسال کالا ها با <b>تیپاکس</b> انجام میشود و هزینه پرداخت آن
+          توسط <b>لینک </b>
           به خریدار فرستاده می شود
         </p>
       </div>

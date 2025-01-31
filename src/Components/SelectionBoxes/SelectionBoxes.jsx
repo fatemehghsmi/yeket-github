@@ -2,14 +2,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./SelectionBoxes.module.css";
 
-const SelectionBoxes = ({ productId }) => {
-  const [colors, setColors] = useState([]); // ذخیره رنگ‌ها
-  const [sizes, setSizes] = useState([]); // ذخیره سایزها
-  const [selectedColor, setSelectedColor] = useState(null); // رنگ انتخاب‌شده
-  const [selectedSize, setSelectedSize] = useState(null); // سایز انتخاب‌شده
-  const [quantity, setQuantity] = useState(1); // تعداد انتخاب‌شده
+const SelectionBoxes = ({
+  productId,
+  onColorChange,
+  onSizeChange,
+  onQuantityChange,
+}) => {
+  const [colors, setColors] = useState([]);
+  const [sizes, setSizes] = useState([]);
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [quantity, setQuantity] = useState(1);
 
-  // دریافت داده‌ها از API
   useEffect(() => {
     const fetchVariants = async () => {
       try {
@@ -22,12 +26,12 @@ const SelectionBoxes = ({ productId }) => {
             id: variant.id,
             color: variant.color,
           }));
+
           const sizeVariants = response.data.variants.map((variant) => ({
             id: variant.id,
             size: variant.size,
           }));
 
-          // حذف سایزهای تکراری
           const uniqueSizes = Array.from(
             new Set(sizeVariants.map((variant) => variant.size))
           ).map((size) => ({
@@ -46,38 +50,62 @@ const SelectionBoxes = ({ productId }) => {
     fetchVariants();
   }, [productId]);
 
+  useEffect(() => {
+    setQuantity(1);
+    onQuantityChange(1);
+  }, [productId, onQuantityChange]);
+
   const handleColorSelection = (color) => {
-    setSelectedColor(color); // تنظیم رنگ انتخاب‌شده
+    setSelectedColor(color);
+    onColorChange(color);
   };
 
   const handleSizeSelection = (size) => {
-    setSelectedSize(size); // تنظیم سایز انتخاب‌شده
+    setSelectedSize(size);
+    onSizeChange(size);
   };
 
   const handleQuantityChange = (e) => {
     const value = parseInt(e.target.value, 10);
-    if (value > 0) {
-      setQuantity(value); // تنظیم مقدار انتخاب‌شده
+    if (value >= 1) {
+      setQuantity(value);
+      onQuantityChange(value);
+    } else {
+      setQuantity(1);
+      onQuantityChange(1);
     }
   };
 
   return (
     <div className={styles.selectionBoxes}>
-     
+      <div className={styles.colorBox}>
+        <label className={styles.labels}>انتخاب رنگ:</label>
+        <div className={styles.colorOptions}>
+          {colors.map((color) => (
+            <div
+              key={color.id}
+              className={`${styles.colorCircle} ${
+                selectedColor?.id === color.id ? styles.selected : ""
+              }`}
+              style={{ backgroundColor: color.color }}
+              onClick={() => handleColorSelection(color)}
+            ></div>
+          ))}
+        </div>
+      </div>
 
-      {/* انتخاب سایز */}
       <div className={styles.sizeBox}>
         <label className={styles.labels}>انتخاب سایز:</label>
         <select
           className={styles.sizeDropdown}
-          value={selectedSize || ""}
+          value={selectedSize?.size || ""}
           onChange={(e) =>
             handleSizeSelection(
               sizes.find((size) => size.size === e.target.value)
             )
           }
         >
-          <option value="">انتخاب </option>
+          <option value="">انتخاب</option>
           {sizes.map((size) => (
             <option key={size.id} value={size.size}>
               {size.size}
@@ -86,7 +114,6 @@ const SelectionBoxes = ({ productId }) => {
         </select>
       </div>
 
-      {/* انتخاب تعداد */}
       <div className={styles.quantityBox}>
         <label className={styles.labels}>تعداد:</label>
         <input
@@ -96,22 +123,6 @@ const SelectionBoxes = ({ productId }) => {
           onChange={handleQuantityChange}
           min="1"
         />
-      </div>
-       {/* انتخاب رنگ */}
-       <div className={styles.colorBox}>
-        <label className={styles.labels}>انتخاب رنگ:</label>
-        <div className={styles.colorOptions}>
-          {colors.map((color) => (
-            <div
-              key={color.id}
-              className={`${styles.colorCircle} ${
-                selectedColor === color ? styles.selected : ""
-              }`}
-              style={{ backgroundColor: color.color }}
-              onClick={() => handleColorSelection(color)}
-            ></div>
-          ))}
-        </div>
       </div>
     </div>
   );

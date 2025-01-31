@@ -4,11 +4,12 @@ import logo from "../../assets/logo.png";
 import { IoSearchOutline } from "react-icons/io5";
 import { GoHeartFill } from "react-icons/go";
 import { FiShoppingCart } from "react-icons/fi";
+import { RiDeleteBin5Fill } from "react-icons/ri";
 import CategoryModal from "./CategoryModal";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { FadeLoader } from "react-spinners";
-import { useCart } from "../../context/CartContext"; // ایمپورت useCart
+import { useCart } from "../../context/CartContext";
 
 function Header() {
   const [category, setCategory] = useState(null);
@@ -21,9 +22,9 @@ function Header() {
   const resultsRef = useRef(null);
   const cartRef = useRef(null);
 
-  const { cart, removeFromCart } = useCart(); // استفاده از useCart
+  const { cart, addToCart, removeFromCart, totalPrice, totalItems } = useCart();
 
-  const showCategoryHandeler = () => {
+  const showCategoryHandler = () => {
     setCategory(true);
   };
 
@@ -42,7 +43,7 @@ function Header() {
     fetchAllProducts();
   }, []);
 
-  const handleInputChange = async (e) => {
+  const handleInputChange = (e) => {
     const term = e.target.value.trim();
     setSearchTerm(term);
 
@@ -87,8 +88,7 @@ function Header() {
   }, []);
 
   const toggleCart = () => {
-    console.log("Toggle Cart:", !showCart); // بررسی تغییر state
-    setShowCart(!showCart);
+    setShowCart((prev) => !prev);
   };
 
   return (
@@ -96,16 +96,13 @@ function Header() {
       <div className={styles.container}>
         <button className={styles.btn}>ورود | ثبت نام</button>
         <Link to="/" className={styles.logoLink}>
-          <img src={logo} alt="" className={styles.logo} />
+          <img src={logo} alt="logo" className={styles.logo} />
           <p className={styles.header}>یکت</p>
           <p className={styles.header2}>اولین فروشگاه بدون تخفیف</p>
         </Link>
       </div>
       <div className={styles.container2}>
-        <button
-          onClick={showCategoryHandeler}
-          className={styles.categoryButton}
-        >
+        <button onClick={showCategoryHandler} className={styles.categoryButton}>
           دسته بندی
         </button>
         <div className={styles.searchWrapper}>
@@ -117,7 +114,6 @@ function Header() {
             className={styles.input}
             placeholder="جستجو کنید..."
           />
-
           {showResults && (
             <div
               className={`${styles.searchResults} ${
@@ -136,17 +132,24 @@ function Header() {
                   />
                 </div>
               ) : searchResults.length > 0 ? (
-                searchResults.map((result) => (
-                  <Link
-                    to={`/product/${result.id}`}
-                    key={result.id}
-                    className={styles.resultItem}
-                    onClick={handleResultClick}
-                  >
-                    <p>{result.title}</p>
-                    <p className={styles.categorytitle}>{result.collection.title}</p>
-                  </Link>
-                ))
+                searchResults.map(
+                  (
+                    result,
+                    index // استفاده از index به عنوان کلید منحصر به فرد
+                  ) => (
+                    <Link
+                      to={`/product/${result.id}`}
+                      key={`${result.id}-${index}`}
+                      className={styles.resultItem}
+                      onClick={handleResultClick}
+                    >
+                      <p>{result.title}</p>
+                      <p className={styles.categorytitle}>
+                        {result.collection.title}
+                      </p>
+                    </Link>
+                  )
+                )
               ) : (
                 <div className={styles.noResults}>
                   <p>نتیجه‌ای یافت نشد</p>
@@ -157,30 +160,56 @@ function Header() {
         </div>
 
         <div className={styles.iconsWrapper}>
-          <FiShoppingCart
-            className={styles.icon}
-            onClick={toggleCart}
-          />
+          <button className={styles.cartIconWrapper} onClick={toggleCart}>
+            {totalItems > 0 && (
+              <span className={styles.cartBadge}>{totalItems}</span>
+            )}
+            <FiShoppingCart className={styles.icon} />
+          </button>
           <GoHeartFill className={styles.icon} />
         </div>
 
         {showCart && (
           <div className={styles.cartDropdown} ref={cartRef}>
-            <h3>سبد خرید</h3>
-            <ul>
-              {cart.length === 0 ? (
-                <p>سبد خرید شما خالی است.</p>
-              ) : (
-                cart.map((product) => (
-                  <li key={product.id}>
-                    <p>{product.title}</p>
-                    <button onClick={() => removeFromCart(product.id)}>
-                      حذف
-                    </button>
-                  </li>
-                ))
-              )}
-            </ul>
+            <h3 className={styles.cartTitle}>سبد خرید</h3>
+            {cart.length === 0 ? (
+              <p className={styles.emptyCart}>سبد خرید شما خالی است.</p>
+            ) : (
+              <>
+                <ul className={styles.cartList}>
+                  {cart.map((product, index) => (
+                    <li key={`${product.id}-${index}`} className={styles.cartItem}>
+                      <div className={styles.productHeader}>
+                        <img
+                          src={product.image?.image || 'path/to/default-image.jpg'}
+                          alt={product.title}
+                          className={styles.productImage}
+                        />
+                        <h4 className={styles.productTitle}>{product.title}</h4>
+                      </div>
+                      <div className={styles.productAttributes}>
+                        <p>رنگ <span className={styles.colorCircle} style={{ backgroundColor: product.selectedColor?.color || 'transparent' }}></span></p>
+                        <p>سایز {product.selectedSize?.size || 'نامشخص'}</p>
+                        <p>تعداد {product.selectedQuantity || 1}</p>
+                      <p className={styles.productPrice}>
+                        {new Intl.NumberFormat('fa-IR').format(product.price * (product.selectedQuantity || 1))} تومان
+                      </p>
+                      <RiDeleteBin5Fill
+                        onClick={() => removeFromCart(product)} // Pass full product object here
+                        className={styles.deleteIcon}
+                      />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <div className={styles.cartTotal}>
+                  <p>مجموع: {new Intl.NumberFormat('fa-IR').format(totalPrice)} تومان</p>
+                  <Link to="/checkout" className={styles.checkoutButton}>
+                    پرداخت
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>

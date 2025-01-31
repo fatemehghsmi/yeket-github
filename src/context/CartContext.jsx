@@ -1,40 +1,66 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
 
-  // بازیابی سبد خرید از localStorage هنگام بارگذاری برنامه
-  useEffect(() => {
-    const savedCart = localStorage.getItem("cart");
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
-    }
-  }, []);
-
-  // ذخیره‌سازی سبد خرید در localStorage هر زمان که cart تغییر کند
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // تابع برای افزودن محصول به سبد خرید
   const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
+    setCart((prevCart) => {
+      const existingProduct = prevCart.find(
+        (item) =>
+          item.id === product.id &&
+          item.selectedColor === product.selectedColor &&
+          item.selectedSize === product.selectedSize
+      );
+
+      if (existingProduct) {
+        // اگر محصول قبلاً در سبد خرید وجود دارد، تعداد آن را به‌روزرسانی کنید
+        return prevCart.map((item) =>
+          item.id === product.id &&
+          item.selectedColor === product.selectedColor &&
+          item.selectedSize === product.selectedSize
+            ? { ...item, selectedQuantity: item.selectedQuantity + product.selectedQuantity }
+            : item
+        );
+      } else {
+        // اگر محصول جدید است، آن را به سبد خرید اضافه کنید
+        return [...prevCart, product];
+      }
+    });
   };
 
-  // تابع برای حذف محصول از سبد خرید
-  const removeFromCart = (productId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+  const removeFromCart = (productToRemove) => {
+    setCart((prevCart) =>
+      prevCart.filter((product) =>
+        product.id !== productToRemove.id ||
+        product.selectedColor !== productToRemove.selectedColor ||
+        product.selectedSize !== productToRemove.selectedSize
+      )
+    );
   };
+  
+  const totalPrice = cart.reduce(
+    (total, product) => total + product.price * (product.selectedQuantity || 1),
+    0
+  );
 
-  // تابع برای خالی کردن سبد خرید
-  const clearCart = () => {
-    setCart([]);
-  };
+  const totalItems = cart.reduce(
+    (total, product) => total + (product.selectedQuantity || 1),
+    0
+  );
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, totalPrice, totalItems }}
+    >
       {children}
     </CartContext.Provider>
   );
