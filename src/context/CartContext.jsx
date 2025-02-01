@@ -14,39 +14,82 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (product) => {
     setCart((prevCart) => {
-      const existingProduct = prevCart.find(
-        (item) =>
-          item.id === product.id &&
-          item.selectedColor === product.selectedColor &&
-          item.selectedSize === product.selectedSize
-      );
-
+      // بررسی وجود ویژگی‌ها
+      const hasColor = product.selectedColor !== null && product.selectedColor !== undefined;
+      const hasSize = product.selectedSize !== null && product.selectedSize !== undefined;
+  
+      // پیدا کردن محصول موجود در سبد خرید
+      const existingProduct = prevCart.find((item) => {
+        const matchId = item.id === product.id;
+        const matchColor = hasColor ? item.selectedColor === product.selectedColor : true;
+        const matchSize = hasSize ? item.selectedSize === product.selectedSize : true;
+        return matchId && matchColor && matchSize;
+      });
+  
       if (existingProduct) {
         // اگر محصول قبلاً در سبد خرید وجود دارد، تعداد آن را به‌روزرسانی کنید
-        return prevCart.map((item) =>
-          item.id === product.id &&
-          item.selectedColor === product.selectedColor &&
-          item.selectedSize === product.selectedSize
-            ? { ...item, selectedQuantity: item.selectedQuantity + product.selectedQuantity }
-            : item
-        );
+        return prevCart.map((item) => {
+          const matchId = item.id === product.id;
+          const matchColor = hasColor ? item.selectedColor === product.selectedColor : true;
+          const matchSize = hasSize ? item.selectedSize === product.selectedSize : true;
+  
+          if (matchId && matchColor && matchSize) {
+            return {
+              ...item,
+              selectedQuantity: item.selectedQuantity + product.selectedQuantity,
+            };
+          } else {
+            return item;
+          }
+        });
       } else {
         // اگر محصول جدید است، آن را به سبد خرید اضافه کنید
-        return [...prevCart, product];
+        return [
+          ...prevCart,
+          {
+            ...product,
+            selectedColor: hasColor ? product.selectedColor : null, // تنظیم به null اگر رنگ وجود نداشته باشد
+            selectedSize: hasSize ? product.selectedSize : null, // تنظیم به null اگر سایز وجود نداشته باشد
+          },
+        ];
       }
     });
   };
 
   const removeFromCart = (productToRemove) => {
     setCart((prevCart) =>
-      prevCart.filter((product) =>
-        product.id !== productToRemove.id ||
-        product.selectedColor !== productToRemove.selectedColor ||
-        product.selectedSize !== productToRemove.selectedSize
-      )
+      prevCart.filter((product) => {
+        // مقایسه‌ی id
+        if (product.id !== productToRemove.id) {
+          return true; // اگر id متفاوت باشد، محصول نگه‌داشته می‌شود
+        }
+  
+        // مقایسه‌ی selectedColor (اگر وجود داشته باشد)
+        if (
+          productToRemove.selectedColor !== null &&
+          productToRemove.selectedColor !== undefined
+        ) {
+          if (product.selectedColor !== productToRemove.selectedColor) {
+            return true; // اگر رنگ متفاوت باشد، محصول نگه‌داشته می‌شود
+          }
+        }
+  
+        // مقایسه‌ی selectedSize (اگر وجود داشته باشد)
+        if (
+          productToRemove.selectedSize !== null &&
+          productToRemove.selectedSize !== undefined
+        ) {
+          if (product.selectedSize !== productToRemove.selectedSize) {
+            return true; // اگر سایز متفاوت باشد، محصول نگه‌داشته می‌شود
+          }
+        }
+  
+        // اگر همه‌ی مقایسه‌ها مطابقت داشته باشند، محصول حذف می‌شود
+        return false;
+      })
     );
   };
-  
+
   const totalPrice = cart.reduce(
     (total, product) => total + product.price * (product.selectedQuantity || 1),
     0

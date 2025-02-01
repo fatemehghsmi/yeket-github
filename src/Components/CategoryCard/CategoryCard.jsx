@@ -3,7 +3,7 @@ import styles from "./CategoryCard.module.css";
 import { Link } from "react-router-dom";
 
 function CategoryCard({ category }) {
-  const link = category.subcollection_ids.length
+  const link = category.subcollections.length
     ? `/category/${category.id}`
     : `/subcategory/${category.id}`;
  

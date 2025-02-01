@@ -91,6 +91,8 @@ function Header() {
     setShowCart((prev) => !prev);
   };
 
+
+  
   return (
     <header id="header" className={styles.headerContainer}>
       <div className={styles.container}>
@@ -132,24 +134,19 @@ function Header() {
                   />
                 </div>
               ) : searchResults.length > 0 ? (
-                searchResults.map(
-                  (
-                    result,
-                    index // استفاده از index به عنوان کلید منحصر به فرد
-                  ) => (
-                    <Link
-                      to={`/product/${result.id}`}
-                      key={`${result.id}-${index}`}
-                      className={styles.resultItem}
-                      onClick={handleResultClick}
-                    >
-                      <p>{result.title}</p>
-                      <p className={styles.categorytitle}>
-                        {result.collection.title}
-                      </p>
-                    </Link>
-                  )
-                )
+                searchResults.map((result, index) => (
+                  <Link
+                    to={`/product/${result.id}`}
+                    key={`${result.id}-${index}`}
+                    className={styles.resultItem}
+                    onClick={handleResultClick}
+                  >
+                    <p>{result.title}</p>
+                    <p className={styles.categorytitle}>
+                      {result.collection.title}
+                    </p>
+                  </Link>
+                ))
               ) : (
                 <div className={styles.noResults}>
                   <p>نتیجه‌ای یافت نشد</p>
@@ -170,48 +167,72 @@ function Header() {
         </div>
 
         {showCart && (
-          <div className={styles.cartDropdown} ref={cartRef}>
-            <h3 className={styles.cartTitle}>سبد خرید</h3>
-            {cart.length === 0 ? (
-              <p className={styles.emptyCart}>سبد خرید شما خالی است.</p>
-            ) : (
-              <>
-                <ul className={styles.cartList}>
-                  {cart.map((product, index) => (
-                    <li key={`${product.id}-${index}`} className={styles.cartItem}>
-                      <div className={styles.productHeader}>
-                        <img
-                          src={product.image?.image || 'path/to/default-image.jpg'}
-                          alt={product.title}
-                          className={styles.productImage}
-                        />
-                        <h4 className={styles.productTitle}>{product.title}</h4>
-                      </div>
-                      <div className={styles.productAttributes}>
-                        <p>رنگ <span className={styles.colorCircle} style={{ backgroundColor: product.selectedColor?.color || 'transparent' }}></span></p>
-                        <p>سایز {product.selectedSize?.size || 'نامشخص'}</p>
-                        <p>تعداد {product.selectedQuantity || 1}</p>
-                      <p className={styles.productPrice}>
-                        {new Intl.NumberFormat('fa-IR').format(product.price * (product.selectedQuantity || 1))} تومان
-                      </p>
-                      <RiDeleteBin5Fill
-                        onClick={() => removeFromCart(product)} // Pass full product object here
-                        className={styles.deleteIcon}
-                      />
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-                <div className={styles.cartTotal}>
-                  <p>مجموع: {new Intl.NumberFormat('fa-IR').format(totalPrice)} تومان</p>
-                  <Link to="/checkout" className={styles.checkoutButton}>
-                    پرداخت
-                  </Link>
-                </div>
-              </>
-            )}
-          </div>
-        )}
+  <div className={styles.cartDropdown} ref={cartRef}>
+    <h3 className={styles.cartTitle}>سبد خرید</h3>
+    {cart.length === 0 ? (
+      <p className={styles.emptyCart}>سبد خرید شما خالی است.</p>
+    ) : (
+      <>
+        <ul className={styles.cartList}>
+        {cart.map((product, index) => (
+  <li key={`${product.id}-${index}`} className={styles.cartItem}>
+    <div className={styles.productHeader}>
+      <img
+        src={product.image?.image || 'path/to/default-image.jpg'}
+        alt={product.title}
+        className={styles.productImage}
+      />
+      <h4 className={styles.productTitle}>{product.title}</h4>
+    </div>
+    <div className={styles.productAttributes}>
+      {/* نمایش رنگ و سایز اگر attributes وجود داشته باشد */}
+      {product.variants && product.variants.length > 0 && (
+        <>
+          {product.variants[0].attributes.map((attr, idx) => {
+            if (attr.includes("رنگ")) {
+              return (
+                <p key={idx}>
+                  رنگ{" "}
+                  <span
+                    className={styles.colorCircle}
+                    style={{ backgroundColor: attr.replace(" (رنگ)", "") }}
+                  ></span>
+                </p>
+              );
+            } else if (attr.includes("سایز")) {
+              return (
+                <p key={idx}>سایز {attr.replace(" (سایز)", "")}</p>
+              );
+            }
+            return null;
+          })}
+        </>
+      )}
+      <p>تعداد {product.selectedQuantity || 1}</p>
+      <p className={styles.productPrice}>
+        {new Intl.NumberFormat('fa-IR').format(
+          product.price * (product.selectedQuantity || 1)
+        )}{" "}
+        تومان
+      </p>
+      <RiDeleteBin5Fill
+        onClick={() => removeFromCart(product)} // ارسال محصول به تابع removeFromCart
+        className={styles.deleteIcon}
+      />
+    </div>
+  </li>
+))}
+        </ul>
+        <div className={styles.cartTotal}>
+          <p>مجموع: {new Intl.NumberFormat('fa-IR').format(totalPrice)} تومان</p>
+          <Link to="/checkout" className={styles.checkoutButton}>
+            پرداخت
+          </Link>
+        </div>
+      </>
+    )}
+  </div>
+)}
       </div>
       {!!category && (
         <CategoryModal category={category} setCategory={setCategory} />

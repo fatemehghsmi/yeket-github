@@ -93,25 +93,32 @@ function CardDetail() {
 
   // تابع برای افزودن محصول به سبد خرید
   const handleAddToCart = () => {
-    if (!selectedSize || !selectedColor) {
+    // بررسی وجود ویژگی‌ها
+    const hasVariants = product.variants && product.variants.length > 0; // آیا محصول دارای variants است؟
+    const hasAttributes = hasVariants && product.variants.some((variant) =>
+      variant.attributes && variant.attributes.length > 0 // آیا محصول دارای attributes است؟
+    );
+  
+    // اگر محصول ویژگی‌های خاصی داشته باشد، کاربر باید آن‌ها را انتخاب کند
+    if (hasAttributes && (!selectedColor || !selectedSize)) {
       alert("لطفاً رنگ و سایز را انتخاب کنید.");
       return;
     }
-
-    const productWithSelection = {
+  
+    // افزودن محصول به سبد خرید
+    const productToAdd = {
       id: product.id,
       title: product.title,
       price: product.unit_price,
-      image: product.images[0], // فرض بر اینکه تصاویر یک آرایه هستند
-      selectedSize,
-      selectedColor,
-      selectedQuantity,
+      image: product.images[0]?.image || "path/to/default-image.jpg",
+      selectedColor: hasAttributes ? selectedColor : null, // اگر attributes وجود داشته باشد، انتخاب کاربر را اضافه کنید
+      selectedSize: hasAttributes ? selectedSize : null, // اگر attributes وجود داشته باشد، انتخاب کاربر را اضافه کنید
+      selectedQuantity: selectedQuantity,
+      variants: hasVariants ? product.variants : [], // variants را به سبد خرید منتقل کنید
     };
-
-    addToCart(productWithSelection);
+    addToCart(productToAdd);
     alert("محصول به سبد خرید اضافه شد!");
   };
-
   // تنظیمات Slider
   const sliderSettings = {
     dots: true,

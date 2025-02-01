@@ -22,25 +22,23 @@ const SelectionBoxes = ({
         );
 
         if (response.data.variants) {
-          const colorVariants = response.data.variants.map((variant) => ({
-            id: variant.id,
-            color: variant.color,
-          }));
+          // استخراج رنگ‌ها و سایزها از attributes
+          const colorSet = new Set();
+          const sizeSet = new Set();
 
-          const sizeVariants = response.data.variants.map((variant) => ({
-            id: variant.id,
-            size: variant.size,
-          }));
+          response.data.variants.forEach((variant) => {
+            variant.attributes.forEach((attr) => {
+              if (attr.includes("رنگ")) {
+                colorSet.add(attr.replace(" (رنگ)", ""));
+              } else if (attr.includes("سایز")) {
+                sizeSet.add(attr.replace(" (سایز)", ""));
+              }
+            });
+          });
 
-          const uniqueSizes = Array.from(
-            new Set(sizeVariants.map((variant) => variant.size))
-          ).map((size) => ({
-            id: sizeVariants.find((variant) => variant.size === size).id,
-            size,
-          }));
-
-          setColors(colorVariants);
-          setSizes(uniqueSizes);
+          // تبدیل Set به آرایه و ذخیره در state
+          setColors(Array.from(colorSet).map((color, index) => ({ id: index + 1, color })));
+          setSizes(Array.from(sizeSet).map((size, index) => ({ id: index + 1, size })));
         }
       } catch (error) {
         console.error("خطا در دریافت اطلاعات از API:", error);
@@ -78,42 +76,49 @@ const SelectionBoxes = ({
 
   return (
     <div className={styles.selectionBoxes}>
-      <div className={styles.colorBox}>
-        <label className={styles.labels}>انتخاب رنگ:</label>
-        <div className={styles.colorOptions}>
-          {colors.map((color) => (
-            <div
-              key={color.id}
-              className={`${styles.colorCircle} ${
-                selectedColor?.id === color.id ? styles.selected : ""
-              }`}
-              style={{ backgroundColor: color.color }}
-              onClick={() => handleColorSelection(color)}
-            ></div>
-          ))}
+      {/* نمایش باکس رنگ فقط اگر رنگ‌ها وجود داشته باشند */}
+      {colors.length > 0 && (
+        <div className={styles.colorBox}>
+          <label className={styles.labels}>انتخاب رنگ:</label>
+          <div className={styles.colorOptions}>
+            {colors.map((color) => (
+              <div
+                key={color.id}
+                className={`${styles.colorCircle} ${
+                  selectedColor?.color === color.color ? styles.selected : ""
+                }`}
+                style={{ backgroundColor: color.color }}
+                onClick={() => handleColorSelection(color)}
+              ></div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
-      <div className={styles.sizeBox}>
-        <label className={styles.labels}>انتخاب سایز:</label>
-        <select
-          className={styles.sizeDropdown}
-          value={selectedSize?.size || ""}
-          onChange={(e) =>
-            handleSizeSelection(
-              sizes.find((size) => size.size === e.target.value)
-            )
-          }
-        >
-          <option value="">انتخاب</option>
-          {sizes.map((size) => (
-            <option key={size.id} value={size.size}>
-              {size.size}
-            </option>
-          ))}
-        </select>
-      </div>
+      {/* نمایش باکس سایز فقط اگر سایزها وجود داشته باشند */}
+      {sizes.length > 0 && (
+        <div className={styles.sizeBox}>
+          <label className={styles.labels}>انتخاب سایز:</label>
+          <select
+            className={styles.sizeDropdown}
+            value={selectedSize?.size || ""}
+            onChange={(e) =>
+              handleSizeSelection(
+                sizes.find((size) => size.size === e.target.value)
+              )
+            }
+          >
+            <option value="">انتخاب</option>
+            {sizes.map((size) => (
+              <option key={size.id} value={size.size}>
+                {size.size}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
+      {/* نمایش باکس تعداد همیشه */}
       <div className={styles.quantityBox}>
         <label className={styles.labels}>تعداد:</label>
         <input
