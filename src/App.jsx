@@ -4,28 +4,30 @@ import HomePage from "./Pages/HomePage";
 import ProductDetail from "./Pages/ProductDetail";
 import BestSellers from "./Pages/BestSellers";
 import Newests from "./Pages/Newests";
-import AboutYeket from "./Pages/AboutYeket";
-import ContactYeket from "./Pages/ContactYeket";
-import ContactSupportYeket from "./Pages/ContactSupportYeket";
-import AnswersQuestions from "./Pages/AnswersQuestions";
-import HowToSell from "./Pages/HowToSell";
-import HowToBuy from "./Pages/HowToBuy";
-import ContactSalesSupport from "./Pages/ContactSalesSupport";
-import PaymentGuide from "./Pages/PaymentGuide";
-import PurchaseConditions from "./Pages/PurchaseConditions";
-import Returning from "./Pages/Returning";
-import SendOrder from "./Pages/SendOrder";
-import TermsOfSale from "./Pages/TermsOfSale";
-import ReaportInYeket from "./Pages/ReaportInYeket";
+import AboutYeket from "./Pages/AboutYeket/AboutYeket";
+import ContactYeket from "./Pages/ContactYeket/ContactYeket";
+import ContactSupportYeket from "./Pages/ContactSupportYeket/ContactSupportYeket";
+import AnswersQuestions from "./Pages/AnswersQuestions/AnswersQuestions";
+import HowToSell from "./Pages/HowToSell/HowToSell";
+import HowToBuy from "./Pages/HowToBuy/HowToBuy";
+import ContactSalesSupport from "./Pages/ContactSalesSupport/ContactSalesSupport";
+import PaymentGuide from "./Pages/PaymentGuide/PaymentGuide";
+import PurchaseConditions from "./Pages/PurchaseConditions/PurchaseConditions";
+import Returning from "./Pages/Returning/Returning";
+import SendOrder from "./Pages/SendOrder/SendOrder";
+import TermsOfSale from "./Pages/TermsOfSale/TermsOfSale";
+import ReaportInYeket from "./Pages/ReaportInYeket/ReaportInYeket";
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import VendorProducts from "./Pages/VendorProducts";
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop"; // مسیر فایل ScrollToTop
+import PersonalInformation from "./Pages/PersonalInformation/PersonalInformation";
 
 import styles from "./App.module.css";
 import CategoryPage from "./Pages/CategoryPage";
 import SubCategoryPage from "./Pages/SubCategoryPage";
 import Customer from "./Pages/Customer";
+import LoginSignupPage from "./Pages/Login/LoginSignupPage";
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
         <Header />
         <ScrollToTop />
         <Routes>
+          <Route path="/info" element={<PersonalInformation />} />
           <Route path="/newests" element={<Newests />} />
           <Route path="/bestsellers" element={<BestSellers />} />
           <Route path="/product/:id" element={<ProductDetail />} />
@@ -43,6 +46,8 @@ function App() {
             element={<SubCategoryPage />}
           />
           <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginSignupPage />} />{" "}
+          {/* افزودن صفحه لاگین */}
           <Route path="/aboutyeket" element={<AboutYeket />} />
           <Route path="/contactyeket" element={<ContactYeket />} />
           <Route

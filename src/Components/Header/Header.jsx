@@ -6,12 +6,17 @@ import { GoHeartFill } from "react-icons/go";
 import { FiShoppingCart } from "react-icons/fi";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import CategoryModal from "./CategoryModal";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { FadeLoader } from "react-spinners";
 import { useCart } from "../../context/CartContext";
 
 function Header() {
+  const location = useLocation();
+
+  // بررسی اینکه آیا در صفحه لاگین هستیم یا خیر
+  if (location.pathname === "/login") return null; // اگر صفحه لاگین بود، هدر نمایش داده نشود
+
   const [category, setCategory] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [allProducts, setAllProducts] = useState([]);
@@ -96,7 +101,9 @@ function Header() {
   return (
     <header id="header" className={styles.headerContainer}>
       <div className={styles.container}>
-        <button className={styles.btn}>ورود | ثبت نام</button>
+        <Link to="/login">
+          <button className={styles.btn}>ورود | ثبت نام</button>
+        </Link>
         <Link to="/" className={styles.logoLink}>
           <img src={logo} alt="logo" className={styles.logo} />
           <p className={styles.header}>یکت</p>

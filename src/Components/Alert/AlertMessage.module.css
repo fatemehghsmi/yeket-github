@@ -1,0 +1,68 @@
+:root {
+  --primary-color: #386641; /* رنگ اصلی */
+  --secondary-color: #f2e8cf; /* رنگ ثانویه */
+  --hover-color: #e39e47; /* رنگ hover */
+  --text-color: white; /* رنگ متن */
+  --font-size: 20px; /* اندازه فونت */
+  --border-radius: 10px; /* شعاع حاشیه */
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* سایه */
+}
+
+/* استایل‌های اصلی */
+.alertContainer {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 500px;
+  z-index: 9999;
+  direction: rtl;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.alertContainer.fadeOut {
+  animation: fadeOut 0.3s ease-in-out;
+}
+
+.alertMessage {
+  background-color: var(--primary-color);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+  font-size: var(--font-size);
+  box-shadow: var(--box-shadow);
+}
+
+/* استایل‌های دکمه بستن */
+.closeBtn {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.closeBtn:hover {
+  background-color: var(--hover-color);
+  color: var(--text-color);
+}
+
+/* استایل‌های انواع پیام‌ها */
+.alertMessage.success {
+  background-color: #386641; /* سبز */
+}
+
+.alertMessage.error {
+  background-color: #ff6b6b; /* قرمز */
+}
+
+.alertMessage.warning {
+  background-color: #ffa500; /* نارنجی */
+}
