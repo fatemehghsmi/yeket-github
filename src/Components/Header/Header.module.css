@@ -223,153 +223,160 @@
   margin: 0 auto; /* مرکز کردن */
 }
 
-/* استایل‌های جدید برای کادر لیست سفارش‌ها */
+/* استایل کلی سبد خرید */
 .cartIconWrapper{
   background-color: unset;
   border: none;
 }
 .cartBadge{
-  color: #f2e8cf;
-  font-size: 0.7rem;
-  font-family: "Vazir-FD-WOL";
-  border: none;
-  margin-left: 3px;
   background-color: #386641;
+  color: #fff;
   border-radius: 50%;
-  padding: 0.2rem 0.5rem;
-
+  padding: 2px 6px;
+  font-size: 12px;
 }
 .cartDropdown {
   position: absolute;
-  top: 15%; /* زیر آیکن قرار بگیرد */
-  left: 11%;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  top: 100px;
+  left: 120px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 380px;
+  z-index: 1000;
   padding: 16px;
-  width: 400px;
-  z-index: 1000; /* مطمئن شوید که بالای سایر عناصر قرار می‌گیرد */
-  max-height: 500px;
-  overflow-y: auto;
- 
-}
-.productHeader {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-.cartTitle{
-  text-align: center;
-  color: #6a994e;
-  font-size: 18px;
-  margin-bottom: 12px;
-  font-weight: bold;
-}
-.cartDropdown h3 {
-  margin-bottom: 12px;
-  font-size: 18px;
-  color: #333;
 }
 
-.cartDropdown ul {
+/* عنوان سبد خرید */
+.cartTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #386641;
+  text-align: center;
+}
+
+/* پیام سبد خرید خالی */
+.emptyCart {
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
+
+/* لیست آیتم‌های سبد خرید */
+.cartList {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.cartDropdown li {
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
-  font-size: 14px;
-  color: #555;
-}
-
-.cartDropdown li:last-child {
-  border-bottom: none;
-}
+/* هر آیتم در سبد خرید */
 .cartItem {
   display: flex;
   align-items: center;
-  gap: 10px; /* فاصله بین عکس و متن */
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
-  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
 }
-.productDetails {
-  flex-grow: 1;
-  margin-left: 16px;
+
+/* افکت هاور روی آیتم‌ها */
+.cartItem:hover {
+  background-color: #f9f9f9;
 }
-.productTitle{
-  display: block;
-  margin-bottom: 12px;
-  text-align: center;
+
+/* بخش عکس و عنوان محصول */
+.productHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
 }
-.productPrice {
-  font-size: 13px;
-  font-weight: bold;
-  text-align: center;
-  color: #386641;
-  margin: 0;
-}
+
+/* عکس محصول */
 .productImage {
-  width: 50px; /* عرض عکس */
-  height: 50px; /* ارتفاع عکس */
-  object-fit: cover; /* حفظ نسبت تصویر */
-  border-radius: 8px; /* گردی گوشه‌ها */
-  
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
 }
+
+/* عنوان محصول */
+.productTitle {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+  color: #444;
+}
+
+/* بخش ویژگی‌های محصول (رنگ، سایز، تعداد، قیمت) */
 .productAttributes {
   display: flex;
-  justify-content: center;
-  gap: 12px;
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 12px;
-}
-.cartTotal {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 16px 0;
-  border-top: 1px solid #ddd;
-  margin-top: 16px;
-}
-.cartItem {
-  position: relative; /* برای موقعیت‌دهی دکمه حذف */
-  padding: 16px 0;
-  border-bottom: 1px solid #eee;
-}
-.cartItem:last-child {
-  border-bottom: none;
+  gap: 12px;
+  font-size: 12px;
+  color: #666;
 }
 
+/* دایره رنگ */
+.colorCircle {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+/* آیکن حذف */
 .deleteIcon {
-  position: inherit; /* موقعیت مطلق نسبت به آیتم */
-  top: 16px; /* فاصله از بالا */
-  left: 0; /* فاصله از راست */
   cursor: pointer;
-  font-size: 22px;
-  color: #f0b653; /* رنگ نارنجی برای دکمه حذف */
+  color: #f0b653;
+  font-size: 20px;
+  transition: color 0.2s ease;
+}
+
+/* افکت هاور روی آیکن حذف */
+.deleteIcon:hover {
+  color: #f0b34b;
+}
+
+/* بخش مجموع و دکمه پرداخت */
+.cartTotal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 12px;
+}
+
+/* متن مجموع */
+.cartTotal p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #386641;
+  vertical-align: middle;
   
 }
 
-.deleteIcon:hover {
-  color: darkorange; /* تغییر رنگ هنگام هاور */
-}
+/* دکمه تکمیل خرید */
 .checkoutButton {
-  background-color: #386641;
+  background-color: #6a994e;
   color: #fff;
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 8px;
   text-decoration: none;
   font-size: 14px;
+  transition: background-color 0.2s ease;
+  display: block;
 }
 
+/* افکت هاور روی دکمه پرداخت */
 .checkoutButton:hover {
-  background-color: #2a4a32;
+  background-color: #2a4d2f;
 }
 /* سایر استایل‌ها... */
 

@@ -181,59 +181,61 @@ function Header() {
     ) : (
       <>
         <ul className={styles.cartList}>
-        {cart.map((product, index) => (
-  <li key={`${product.id}-${index}`} className={styles.cartItem}>
-    <div className={styles.productHeader}>
-      <img
-        src={product.image || 'path/to/default-image.jpg'}
-        alt={product.title}
-        className={styles.productImage}
-      />
-      <h4 className={styles.productTitle}>{product.title}</h4>
-    </div>
-    <div className={styles.productAttributes}>
-      {/* نمایش رنگ و سایز اگر attributes وجود داشته باشد */}
-      {product.variants && product.variants.length > 0 && (
-        <>
-          {product.variants[0].attributes.map((attr, idx) => {
-            if (attr.includes("رنگ")) {
-              return (
-                <p key={idx}>
-                  رنگ{" "}
-                  <span
-                    className={styles.colorCircle}
-                    style={{ backgroundColor: attr.replace(" (رنگ)", "") }}
-                  ></span>
+          {cart.map((product, index) => (
+            <li key={`${product.id}-${index}`} className={styles.cartItem}>
+              <div className={styles.productHeader}>
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className={styles.productImage}
+                  onError={(e) => {
+                    e.target.src = "https://via.placeholder.com/60"; // اگر عکس بارگذاری نشد، از عکس پیش‌فرض استفاده کن
+                  }}
+                />
+                <h4 className={styles.productTitle}>{product.title}</h4>
+              </div>
+              <div className={styles.productAttributes}>
+                {product.variants && product.variants.length > 0 && (
+                  <>
+                    {product.variants[0].attributes.map((attr, idx) => {
+                      if (attr.includes("رنگ")) {
+                        return (
+                          <p key={idx}>
+                            رنگ{" "}
+                            <span
+                              className={styles.colorCircle}
+                              style={{ backgroundColor: attr.replace(" (رنگ)", "") }}
+                            ></span>
+                          </p>
+                        );
+                      } else if (attr.includes("سایز")) {
+                        return (
+                          <p key={idx}>سایز {attr.replace(" (سایز)", "")}</p>
+                        );
+                      }
+                      return null;
+                    })}
+                  </>
+                )}
+                <p>تعداد {product.selectedQuantity || 1}</p>
+                <p className={styles.productPrice}>
+                  {new Intl.NumberFormat('fa-IR').format(
+                    product.price * (product.selectedQuantity || 1)
+                  )}{" "}
+                  تومان
                 </p>
-              );
-            } else if (attr.includes("سایز")) {
-              return (
-                <p key={idx}>سایز {attr.replace(" (سایز)", "")}</p>
-              );
-            }
-            return null;
-          })}
-        </>
-      )}
-      <p>تعداد {product.selectedQuantity || 1}</p>
-      <p className={styles.productPrice}>
-        {new Intl.NumberFormat('fa-IR').format(
-          product.price * (product.selectedQuantity || 1)
-        )}{" "}
-        تومان
-      </p>
-      <RiDeleteBin5Fill
-        onClick={() => removeFromCart(product)} // ارسال محصول به تابع removeFromCart
-        className={styles.deleteIcon}
-      />
-    </div>
-  </li>
-))}
+                <RiDeleteBin5Fill
+                  onClick={() => removeFromCart(product)}
+                  className={styles.deleteIcon}
+                />
+              </div>
+            </li>
+          ))}
         </ul>
         <div className={styles.cartTotal}>
           <p>مجموع: {new Intl.NumberFormat('fa-IR').format(totalPrice)} تومان</p>
           <Link to="/checkout" className={styles.checkoutButton}>
-            پرداخت
+            تکمیل خرید
           </Link>
         </div>
       </>
