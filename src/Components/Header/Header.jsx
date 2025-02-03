@@ -185,7 +185,7 @@ function Header() {
   <li key={`${product.id}-${index}`} className={styles.cartItem}>
     <div className={styles.productHeader}>
       <img
-        src={product.image?.image || 'path/to/default-image.jpg'}
+        src={product.image || 'path/to/default-image.jpg'}
         alt={product.title}
         className={styles.productImage}
       />
