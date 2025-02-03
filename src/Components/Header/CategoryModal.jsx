@@ -78,7 +78,7 @@ function CategoryModal({ category, setCategory }) {
                 item.parent == null && (
                   <Link
                     to={
-                      item.subcollection_ids.length
+                      item.subcollections.length
                         ? `/category/${item.id}`
                         : `/subcategory/${item.id}`
                     }

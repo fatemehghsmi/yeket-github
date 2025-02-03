@@ -10,7 +10,7 @@ function ProductCard({ product }) {
   return (
     <Link to={`/product/${product.id}`}>
       <div className={styles.card}>
-        {product.images.lenght && <img src={product.images[0].image} alt="" className={styles.img} />}
+        {product.images.length && <img src={product.images[0].image} alt="" className={styles.img} />}
         <p className={styles.title}>{product.title}</p>
         <button className={styles.price}>
           {formatNumber(product.unit_price)}&nbsp; تومان
