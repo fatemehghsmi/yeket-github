@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import styles from "./LoginSignupPage.module.css";
 import logo from "../../assets/logo.png";
 import AlertMessage from "../../Components/Alert/AlertMessage";
@@ -45,25 +46,55 @@ function LoginSignupPage() {
     return regex.test(phoneNumber);
   };
 
-  const handlePhoneNumberSubmit = () => {
+  const handlePhoneNumberSubmit = async () => {
     if (!validatePhoneNumber(phoneNumber)) {
       setAlertMessage("شماره تلفن وارد شده معتبر نیست.");
       return;
     }
-    setIsCodeSent(true);
-    setAlertMessage("کد تایید به شماره شما ارسال شد.");
-    setIsTimerActive(true);
-    startTimer();
+    try {
+      const response = await axios.post(
+        "https://yeket.liara.run/api/users/send_otp/",
+        {
+          phone_number: phoneNumber,
+          is_seller: isSeller, // If needed
+        }
+      );
+
+      setIsCodeSent(true);
+      setAlertMessage(
+        response.data.message || "کد تایید به شماره شما ارسال شد."
+      );
+      setIsTimerActive(true);
+      startTimer();
+    } catch (error) {
+      console.error(error);
+      setAlertMessage("مشکلی در ارسال کد پیش آمد. لطفا دوباره تلاش کنید.");
+    }
   };
 
-  const handleVerificationSubmit = () => {
-    if (verificationCode === "1234") {
-      setIsLoggedIn(true); // ورود موفقیت‌آمیز
+  const handleVerificationSubmit = async () => {
+    try {
+      const response = await axios.post(
+        "https://yeket.liara.run/api/users/verify_otp/",
+        {
+          phone_number: phoneNumber,
+          code: verificationCode,
+        }
+      );
+
+      const { access, refresh } = response.data; // JWT tokens
+
+      // Save tokens in localStorage
+      localStorage.setItem("access_token", access);
+      localStorage.setItem("refresh_token", refresh);
+
+      setIsLoggedIn(true);
       setAlertMessage("ورود موفقیت‌آمیز بود");
       setPhoneNumber("");
       setVerificationCode("");
-    } else {
-      setAlertMessage("کد وارد شده اشتباه است");
+    } catch (error) {
+      console.error(error);
+      setAlertMessage("کد وارد شده اشتباه است یا منقضی شده است.");
       setVerificationCode("");
     }
   };
